@@ -1,6 +1,7 @@
 const activeScreen = document.getElementsByTagName(`main`)[0];
 const templates = [`greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`];
 let currentScreenNum = 0;
+let screens = [];
 
 for (let value of templates) {
   screens.push(document.getElementById(value));
