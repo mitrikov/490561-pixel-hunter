@@ -1,10 +1,9 @@
-const templates = [`main`, `rules`, `greeting`, `game-1`, `game-2`, `game-3`, `stats`];
 const activeScreen = document.getElementsByTagName(`main`)[0];
-let screens = [];
+const templates = [`greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`];
 let currentScreenNum = 0;
 
-for (let i = 0; i < templates.length; i++) {
-  screens[i] = document.getElementById(templates[i]);
+for (let value of templates) {
+  screens.push(document.getElementById(value));
 }
 
 const showScreen = (number) => {
@@ -26,17 +25,17 @@ const showPreviousScreen = () => {
   }
 };
 
-const listenKeys = () => {
-  if (event.altKey && event.keyCode === 39) {
-    event.preventDefault();
+const listenKeys = (e) => {
+  if (e.altKey && e.code === `ArrowRight`) {
+    e.preventDefault();
     showNextScreen();
   }
 
-  if (event.altKey && event.keyCode === 37) {
-    event.preventDefault();
+  if (e.altKey && e.code === `ArrowLeft`) {
+    e.preventDefault();
     showPreviousScreen();
   }
 };
 
-document.addEventListener(`keydown`, listenKeys, false);
-document.getElementsByClassName(`intro__asterisk`)[0].addEventListener(`click`, showNextScreen, false);
+showScreen(0);
+document.addEventListener(`keydown`, (e) => listenKeys(e), false);
