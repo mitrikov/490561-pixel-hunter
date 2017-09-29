@@ -1,11 +1,9 @@
 const activeScreen = document.getElementsByTagName(`main`)[0];
-const templates = [`greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`];
+const screens = [`greeting`, `rules`, `game-1`, `game-2`, `game-3`, `stats`].map((id) => document.getElementById(id));
 let currentScreenNum = 0;
-let screens = [];
 
-for (let value of templates) {
-  screens.push(document.getElementById(value));
-}
+const ARROW_LEFT = 0x25;
+const ARROW_RIGHT = 0x27;
 
 const showScreen = (number) => {
   activeScreen.innerHTML = screens[number].innerHTML;
@@ -27,14 +25,14 @@ const showPreviousScreen = () => {
 };
 
 const listenKeys = (e) => {
-  if (e.altKey && e.code === `ArrowRight`) {
-    e.preventDefault();
-    showNextScreen();
-  }
-
-  if (e.altKey && e.code === `ArrowLeft`) {
+  if (e.altKey && e.keyCode === ARROW_LEFT) {
     e.preventDefault();
     showPreviousScreen();
+  }
+
+  if (e.altKey && e.keyCode === ARROW_RIGHT) {
+    e.preventDefault();
+    showNextScreen();
   }
 };
 
