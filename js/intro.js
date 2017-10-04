@@ -1,6 +1,5 @@
-import getElementFromTemplate from './template.js';
-import greeting from './greeting.js';
-import showScreen from './screen.js';
+import getElementFromTemplate from './template';
+import showScreen from './screens';
 
 const intro = getElementFromTemplate(`<div id="main" class="central__content">
     <div id="intro" class="intro">
@@ -19,18 +18,11 @@ const intro = getElementFromTemplate(`<div id="main" class="central__content">
     </div>
   </footer>`);
 
-intro.querySelector(`.intro__asterisk`).addEventListener(`click`, showScreen.bind(null, greeting), false);
-
-export default intro;
-
-/* Альтернативный вариант - передавать объектом отдельно код и обработчики событий
-const setEventListeners = (page) => {
-  intro.querySelector(`.intro__asterisk`).addEventListener(`click`, showScreen.bind(null, page), false);
-}
-
-const setEventListeners = (page) => {
-  intro.querySelector(`.intro__asterisk`).addEventListener(`click`, showScreen.bind(null, page), false);
+const showGreetingScreen = (e) => {
+  e.preventDefault();
+  showScreen(`greeting`);
 };
 
-export {intro, setEventListeners};
-}; */
+intro.querySelector(`.intro__asterisk`).addEventListener(`click`, showGreetingScreen, false);
+
+export default intro;

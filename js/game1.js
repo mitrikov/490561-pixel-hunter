@@ -1,7 +1,5 @@
 import getElementFromTemplate from './template.js';
-// import greeting from './greeting.js';
-import game2 from './game2.js';
-import showScreen from './screen.js';
+import showScreen from './screens';
 
 const game1 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -69,11 +67,16 @@ const game1 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
+const showGreetingScreen = (e) => {
+  e.preventDefault();
+  showScreen(`greeting`);
+};
+
 const radioBoxes = game1.querySelectorAll(`input[type=radio]`);
 
 const checkRadioBoxes = () => {
   if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
-    showScreen(game2);
+    showScreen(`game2`);
   }
 };
 
@@ -81,6 +84,6 @@ for (let value of radioBoxes) {
   value.addEventListener(`change`, checkRadioBoxes, false);
 }
 
-// game1.querySelector(`.back`).addEventListener(`click`, showScreen.bind(null, greeting), false);
+game1.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
 
 export default game1;
