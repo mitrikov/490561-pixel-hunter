@@ -1,7 +1,5 @@
 import getElementFromTemplate from './template.js';
-// import greeting from './greeting.js';
-import stats from "./stats";
-import showScreen from './screen.js';
+import showScreen from './screens';
 
 const game3 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -58,10 +56,20 @@ const game3 = getElementFromTemplate(`<header class="header">
 
 const images = game3.querySelectorAll(`.game__option`);
 
+const showGreetingScreen = (e) => {
+  e.preventDefault();
+  showScreen(`greeting`);
+};
+
+const showStatsScreen = (e) => {
+  e.preventDefault();
+  showScreen(`stats`);
+};
+
 for (let value of images) {
-  value.addEventListener(`click`, showScreen.bind(null, stats), false);
+  value.addEventListener(`click`, showStatsScreen, false);
 }
 
-// game3.querySelector(`.back`).addEventListener(`click`, showScreen.bind(null, greeting), false);
+game3.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
 
 export default game3;

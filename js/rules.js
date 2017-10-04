@@ -1,8 +1,5 @@
 import getElementFromTemplate from './template.js';
-//import greeting from './greeting.js';
-import game1 from './game1.js';
-import showScreen from './screen.js';
-
+import showScreen from './screens';
 
 const rules = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -39,13 +36,22 @@ const rules = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
+const showGame1Screen = (e) => {
+  e.preventDefault();
+  showScreen(`game1`);
+};
+
+const showGreetingScreen = (e) => {
+  e.preventDefault();
+  showScreen(`greeting`);
+};
 
 const switchGoButton = (e) => {
-  rules.querySelector(`.rules__button`).disabled = e.currentTarget.value === `` ? true : false;
+  rules.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
 };
 
 rules.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
-rules.querySelector(`.rules__button`).addEventListener(`click`, showScreen.bind(null, game1), false);
-rules.querySelector(`.back`).addEventListener(`click`, showScreen.bind(null, greeting), false);
+rules.querySelector(`.rules__form`).addEventListener(`submit`, showGame1Screen, false);
+rules.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
 
 export default rules;

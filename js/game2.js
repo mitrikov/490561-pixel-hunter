@@ -1,7 +1,5 @@
 import getElementFromTemplate from './template.js';
-// import greeting from './greeting.js';
-import game3 from './game3.js';
-import showScreen from './screen.js';
+import showScreen from './screens';
 
 const game2 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -60,10 +58,19 @@ const game2 = getElementFromTemplate(`<header class="header">
 
 const radioBoxes = game2.querySelectorAll(`.game__answer`);
 
-for (let value of radioBoxes) {
-  value.addEventListener(`change`, showScreen.bind(null, game3), false);
-}
+const showGreetingScreen = (e) => {
+  e.preventDefault();
+  showScreen(`greeting`);
+};
 
-// game2.querySelector(`.back`).addEventListener(`click`, showScreen.bind(null, greeting), false);
+const showGame3Screen = (e) => {
+  e.preventDefault();
+  showScreen(`game3`);
+};
+
+for (let value of radioBoxes) {
+  value.addEventListener(`change`, showGame3Screen, false);
+}
+game2.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
 
 export default game2;
