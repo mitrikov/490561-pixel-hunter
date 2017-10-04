@@ -67,12 +67,8 @@ const game1 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const showGreetingScreen = (e) => {
-  e.preventDefault();
-  showScreen(`greeting`);
-};
-
-const radioBoxes = game1.querySelectorAll(`input[type=radio]`);
+const form = game1.querySelector(`.game__content`);
+const radioBoxes = form.querySelectorAll(`input[type=radio]`);
 
 const checkRadioBoxes = () => {
   if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
@@ -80,10 +76,7 @@ const checkRadioBoxes = () => {
   }
 };
 
-for (let value of radioBoxes) {
-  value.addEventListener(`change`, checkRadioBoxes, false);
-}
-
-game1.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
+form.addEventListener(`change`, checkRadioBoxes, false);
+game1.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
 
 export default game1;

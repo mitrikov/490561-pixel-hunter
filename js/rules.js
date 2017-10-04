@@ -36,22 +36,17 @@ const rules = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const showGame1Screen = (e) => {
-  e.preventDefault();
-  showScreen(`game1`);
-};
-
-const showGreetingScreen = (e) => {
-  e.preventDefault();
-  showScreen(`greeting`);
-};
-
 const switchGoButton = (e) => {
   rules.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
 };
 
+const onFormSubmit = (e) => {
+  e.preventDefault();
+  showScreen(`game1`);
+};
+
 rules.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
-rules.querySelector(`.rules__form`).addEventListener(`submit`, showGame1Screen, false);
-rules.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
+rules.querySelector(`.rules__form`).addEventListener(`submit`, onFormSubmit, false);
+rules.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
 
 export default rules;

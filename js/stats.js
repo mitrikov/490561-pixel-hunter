@@ -120,11 +120,6 @@ const stats = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const showGreetingScreen = (e) => {
-  e.preventDefault();
-  showScreen(`greeting`);
-};
-
-stats.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
+stats.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
 
 export default stats;
