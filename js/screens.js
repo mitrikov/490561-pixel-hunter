@@ -6,22 +6,10 @@ import game2 from './game2';
 import game3 from './game3';
 import stats from './stats';
 
-const screens = {
-  'intro': intro,
-  'greeting': greeting,
-  'rules': rules,
-  'game1': game1,
-  'game2': game2,
-  'game3': game3,
-  'stats': stats,
-};
-
-const showScreen = (screenName) => {
-  activeScreen.innerHTML = ``;
-  activeScreen.appendChild(screens[screenName]);
-};
-
-const activeScreen = document.querySelector(`main`);
-
-export default showScreen;
-
+export const SCREEN_INTRO = intro;
+export const SCREEN_GREETING = greeting;
+export const SCREEN_RULES = rules;
+export const SCREEN_FIRST_GAME = game1;
+export const SCREEN_SECOND_GAME = game2;
+export const SCREEN_THIRD_GAME = game3;
+export const SCREEN_STATS = stats;

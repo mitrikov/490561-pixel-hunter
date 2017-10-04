@@ -1,5 +1,6 @@
 import getElementFromTemplate from './template';
-import showScreen from './screens';
+import showScreen from './showScreen';
+import {SCREEN_GREETING} from './screens';
 
 const intro = getElementFromTemplate(`<div id="main" class="central__content">
     <div id="intro" class="intro">
@@ -18,6 +19,6 @@ const intro = getElementFromTemplate(`<div id="main" class="central__content">
     </div>
   </footer>`);
 
-intro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => showScreen(`greeting`), false);
+intro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => showScreen(SCREEN_GREETING), false);
 
 export default intro;
