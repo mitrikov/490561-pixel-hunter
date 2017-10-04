@@ -25,11 +25,6 @@ const greeting = getElementFromTemplate(`<div class="greeting central--blur">
     </div>
   </footer>`);
 
-const showRulesScreen = (e) => {
-  e.preventDefault();
-  showScreen(`rules`);
-};
-
-greeting.querySelector(`.greeting__continue`).addEventListener(`click`, showRulesScreen, false);
+greeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => showScreen(`rules`), false);
 
 export default greeting;

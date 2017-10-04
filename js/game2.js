@@ -56,21 +56,7 @@ const game2 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const radioBoxes = game2.querySelectorAll(`.game__answer`);
-
-const showGreetingScreen = (e) => {
-  e.preventDefault();
-  showScreen(`greeting`);
-};
-
-const showGame3Screen = (e) => {
-  e.preventDefault();
-  showScreen(`game3`);
-};
-
-for (let value of radioBoxes) {
-  value.addEventListener(`change`, showGame3Screen, false);
-}
-game2.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
+game2.querySelector(`.game__content`).addEventListener(`change`, () => showScreen(`game3`), false);
+game2.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
 
 export default game2;

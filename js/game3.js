@@ -54,22 +54,7 @@ const game3 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const images = game3.querySelectorAll(`.game__option`);
-
-const showGreetingScreen = (e) => {
-  e.preventDefault();
-  showScreen(`greeting`);
-};
-
-const showStatsScreen = (e) => {
-  e.preventDefault();
-  showScreen(`stats`);
-};
-
-for (let value of images) {
-  value.addEventListener(`click`, showStatsScreen, false);
-}
-
-game3.querySelector(`.back`).addEventListener(`click`, showGreetingScreen, false);
+game3.querySelector(`.game__content`).addEventListener(`click`, () => showScreen(`stats`), false);
+game3.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
 
 export default game3;

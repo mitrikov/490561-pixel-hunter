@@ -21,7 +21,6 @@ const showScreen = (screenName) => {
   activeScreen.appendChild(screens[screenName]);
 };
 
-
 const activeScreen = document.querySelector(`main`);
 
 export default showScreen;

@@ -18,11 +18,6 @@ const intro = getElementFromTemplate(`<div id="main" class="central__content">
     </div>
   </footer>`);
 
-const showGreetingScreen = (e) => {
-  e.preventDefault();
-  showScreen(`greeting`);
-};
-
-intro.querySelector(`.intro__asterisk`).addEventListener(`click`, showGreetingScreen, false);
+intro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => showScreen(`greeting`), false);
 
 export default intro;
