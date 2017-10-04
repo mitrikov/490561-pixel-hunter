@@ -1,5 +1,6 @@
 import getElementFromTemplate from './template.js';
-import showScreen from './screens';
+import showScreen from './showScreen';
+import {SCREEN_THIRD_GAME, SCREEN_GREETING} from './screens';
 
 const game2 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -56,7 +57,7 @@ const game2 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-game2.querySelector(`.game__content`).addEventListener(`change`, () => showScreen(`game3`), false);
-game2.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
+game2.querySelector(`.game__content`).addEventListener(`change`, () => showScreen(SCREEN_THIRD_GAME), false);
+game2.querySelector(`.back`).addEventListener(`click`, () => showScreen(SCREEN_GREETING), false);
 
 export default game2;

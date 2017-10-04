@@ -1,5 +1,6 @@
 import getElementFromTemplate from './template.js';
-import showScreen from './screens';
+import showScreen from './showScreen';
+import {SCREEN_GREETING} from './screens';
 
 const stats = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -120,6 +121,6 @@ const stats = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-stats.querySelector(`.back`).addEventListener(`click`, () => showScreen(`greeting`), false);
+stats.querySelector(`.back`).addEventListener(`click`, () => showScreen(SCREEN_GREETING), false);
 
 export default stats;
