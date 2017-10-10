@@ -1,7 +1,6 @@
-import getElementFromTemplate from './template.js';
 import Screen from './screen';
 
-const game1 = getElementFromTemplate(`<header class="header">
+Screen.FIRST_GAME = new Screen(`<header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -67,16 +66,20 @@ const game1 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const form = game1.querySelector(`.game__content`);
-const radioBoxes = form.querySelectorAll(`input[type=radio]`);
+Screen.FIRST_GAME.setController(() =>{
+  const form = Screen.FIRST_GAME.element.querySelector(`.game__content`);
+  const radioBoxes = form.querySelectorAll(`input[type=radio]`);
 
-const checkRadioBoxes = () => {
-  if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
-    Screen.show(Screen.SECOND_GAME);
-  }
-};
+  const checkRadioBoxes = () => {
+    if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
+      Screen.SECOND_GAME.show();
+    }
+  };
 
-form.addEventListener(`change`, checkRadioBoxes, false);
-game1.querySelector(`.back`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
+  form.addEventListener(`change`, checkRadioBoxes, false);
+  Screen.FIRST_GAME.element.querySelector(`.back`).addEventListener(`click`, () => Screen.GREETING.show(), false);
+});
+
+const game1 = Screen.FIRST_GAME;
 
 export default game1;

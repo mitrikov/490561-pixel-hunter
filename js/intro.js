@@ -1,7 +1,6 @@
-import getElementFromTemplate from './template';
 import Screen from './screen';
 
-const intro = getElementFromTemplate(`<div id="main" class="central__content">
+Screen.INTRO = new Screen(`<div id="main" class="central__content">
     <div id="intro" class="intro">
       <h1 class="intro__asterisk">*</h1>
       <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
@@ -18,6 +17,10 @@ const intro = getElementFromTemplate(`<div id="main" class="central__content">
     </div>
   </footer>`);
 
-intro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
+Screen.INTRO.setController(() =>{
+  Screen.INTRO.element.querySelector(`.intro__asterisk`).addEventListener(`click`, () => Screen.GREETING.show(), false);
+});
+
+const intro = Screen.INTRO;
 
 export default intro;
