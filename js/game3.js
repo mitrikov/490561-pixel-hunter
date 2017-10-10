@@ -1,6 +1,5 @@
 import getElementFromTemplate from './template.js';
-import showScreen from './showScreen';
-import {SCREEN_STATS, SCREEN_GREETING} from './screens';
+import Screen from './screen';
 
 const game3 = getElementFromTemplate(`<header class="header">
     <div class="header__back">
@@ -55,7 +54,7 @@ const game3 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-game3.querySelector(`.game__content`).addEventListener(`click`, () => showScreen(SCREEN_STATS), false);
-game3.querySelector(`.back`).addEventListener(`click`, () => showScreen(SCREEN_GREETING), false);
+game3.querySelector(`.game__content`).addEventListener(`click`, () => Screen.show(Screen.STATS), false);
+game3.querySelector(`.back`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
 
 export default game3;

@@ -1,6 +1,5 @@
 import getElementFromTemplate from './template';
-import showScreen from './showScreen';
-import {SCREEN_RULES} from './screens';
+import Screen from './screen';
 
 const greeting = getElementFromTemplate(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -26,6 +25,6 @@ const greeting = getElementFromTemplate(`<div class="greeting central--blur">
     </div>
   </footer>`);
 
-greeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => showScreen(SCREEN_RULES), false);
+greeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => Screen.show(Screen.RULES), false);
 
 export default greeting;
