@@ -1,7 +1,7 @@
-import getElementFromTemplate from './template';
+import Template from './template';
 import Screen from './screen';
 
-const greeting = getElementFromTemplate(`<div class="greeting central--blur">
+const greeting = new Template(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
     <div class="greeting__challenge">
@@ -25,6 +25,6 @@ const greeting = getElementFromTemplate(`<div class="greeting central--blur">
     </div>
   </footer>`);
 
-greeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => Screen.show(Screen.RULES), false);
+greeting.element.querySelector(`.greeting__continue`).addEventListener(`click`, () => Screen.RULES.show(), false);
 
 export default greeting;

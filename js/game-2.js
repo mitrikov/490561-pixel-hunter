@@ -1,7 +1,7 @@
-import getElementFromTemplate from './template.js';
+import Template from './template';
 import Screen from './screen';
 
-const game2 = getElementFromTemplate(`<header class="header">
+const game2 = new Template(`<header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -56,7 +56,7 @@ const game2 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-game2.querySelector(`.game__content`).addEventListener(`change`, () => Screen.show(Screen.THIRD_GAME), false);
-game2.querySelector(`.back`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
+game2.element.querySelector(`.game__content`).addEventListener(`change`, () => Screen.THIRD_GAME.show(), false);
+game2.element.querySelector(`.back`).addEventListener(`click`, () => Screen.GREETING.show(), false);
 
 export default game2;

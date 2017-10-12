@@ -1,7 +1,13 @@
-const getElementFromTemplate = (template) => {
-  const element = document.createElement(`div`);
-  element.innerHTML = template;
-  return element;
-};
+const activeScreen = document.querySelector(`main.central`);
 
-export default getElementFromTemplate;
+export default class Template {
+  constructor(code) {
+    this.element = document.createElement(`div`);
+    this.element.innerHTML = code;
+  }
+
+  show() {
+    activeScreen.innerHTML = ``;
+    activeScreen.appendChild(this.element);
+  }
+}

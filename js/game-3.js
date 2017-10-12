@@ -1,7 +1,7 @@
-import getElementFromTemplate from './template.js';
+import Template from './template';
 import Screen from './screen';
 
-const game1 = getElementFromTemplate(`<header class="header">
+const game3 = new Template(`<header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -16,29 +16,16 @@ const game1 = getElementFromTemplate(`<header class="header">
     </div>
   </header>
   <div class="game">
-    <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-    <form class="game__content">
+    <p class="game__task">Найдите рисунок среди изображений</p>
+    <form class="game__content  game__content--triple">
       <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question1" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
+        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
+      </div>
+      <div class="game__option  game__option--selected">
+        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
       </div>
       <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-        <label class="game__answer  game__answer--photo">
-          <input name="question2" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer  game__answer--paint">
-          <input name="question2" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
+        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
       </div>
     </form>
     <div class="stats">
@@ -47,11 +34,11 @@ const game1 = getElementFromTemplate(`<header class="header">
         <li class="stats__result stats__result--slow"></li>
         <li class="stats__result stats__result--fast"></li>
         <li class="stats__result stats__result--correct"></li>
+        <li class="stats__result stats__result--wrong"></li>
         <li class="stats__result stats__result--unknown"></li>
+        <li class="stats__result stats__result--slow"></li>
         <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
+        <li class="stats__result stats__result--fast"></li>
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
@@ -67,16 +54,7 @@ const game1 = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-const form = game1.querySelector(`.game__content`);
-const radioBoxes = form.querySelectorAll(`input[type=radio]`);
+game3.element.querySelector(`.game__content`).addEventListener(`click`, () => Screen.STATS.show(), false);
+game3.element.querySelector(`.back`).addEventListener(`click`, () => Screen.GREETING.show(), false);
 
-const checkRadioBoxes = () => {
-  if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
-    Screen.show(Screen.SECOND_GAME);
-  }
-};
-
-form.addEventListener(`change`, checkRadioBoxes, false);
-game1.querySelector(`.back`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
-
-export default game1;
+export default game3;

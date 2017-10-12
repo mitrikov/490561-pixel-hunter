@@ -1,7 +1,7 @@
-import getElementFromTemplate from './template.js';
+import Template from './template';
 import Screen from './screen';
 
-const stats = getElementFromTemplate(`<header class="header">
+const stats = new Template(`<header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -120,6 +120,6 @@ const stats = getElementFromTemplate(`<header class="header">
     </div>
   </footer>`);
 
-stats.querySelector(`.back`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
+stats.element.querySelector(`.back`).addEventListener(`click`, () => Screen.GREETING.show(), false);
 
 export default stats;

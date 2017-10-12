@@ -1,7 +1,7 @@
-import getElementFromTemplate from './template.js';
+import Template from './template';
 import Screen from './screen';
 
-const rules = getElementFromTemplate(`<header class="header">
+const rules = new Template(`<header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -37,16 +37,16 @@ const rules = getElementFromTemplate(`<header class="header">
   </footer>`);
 
 const switchGoButton = (e) => {
-  rules.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
+  rules.element.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
 };
 
 const onFormSubmit = (e) => {
   e.preventDefault();
-  Screen.show(Screen.FIRST_GAME);
+  Screen.FIRST_GAME.show();
 };
 
-rules.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
-rules.querySelector(`.rules__form`).addEventListener(`submit`, onFormSubmit, false);
-rules.querySelector(`.back`).addEventListener(`click`, () => Screen.show(Screen.GREETING), false);
+rules.element.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
+rules.element.querySelector(`.rules__form`).addEventListener(`submit`, onFormSubmit, false);
+rules.element.querySelector(`.back`).addEventListener(`click`, () => Screen.GREETING.show(), false);
 
 export default rules;

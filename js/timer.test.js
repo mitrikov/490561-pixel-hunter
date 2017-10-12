@@ -24,4 +24,10 @@ describe(`Объект Timer`, () => {
     timer.tick();
     assert(timer.isEnded());
   });
+
+  it(`Таймер прекращает отсчёт по достижению нуля`, () => {
+    let timer = new Timer(0);
+    timer.tick();
+    assert.equal(timer.getValue(), 0);
+  });
 });

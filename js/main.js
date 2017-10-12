@@ -1,3 +1,3 @@
 import Screen from './screen';
 
-Screen.show(Screen.INTRO);
+Screen.INTRO.show();
