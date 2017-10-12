@@ -6,7 +6,7 @@ import game2 from './game-2';
 import game3 from './game-3';
 import stats from './stats';
 
-const Screen = {
+export default {
   INTRO: intro,
   GREETING: greeting,
   RULES: rules,
@@ -15,6 +15,4 @@ const Screen = {
   THIRD_GAME: game3,
   STATS: stats
 };
-
-export default Screen;
 

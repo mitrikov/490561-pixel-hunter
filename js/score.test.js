@@ -23,10 +23,5 @@ describe(`Функция countTotalScore()`, () => {
   it(`Возвращает 350, если игрок отвечал медленно и 3 раза ошибся`, () => {
     assert.equal(countTotalScore([Answer.SLOW, Answer.SLOW, Answer.SLOW, Answer.SLOW, Answer.SLOW, Answer.SLOW, Answer.SLOW, Answer.WRONG, Answer.WRONG, Answer.WRONG], 0), 350);
   });
-
-  it(`Возвращает -1, если у игрока закончились жизни и он проиграл`, () => {
-    assert.equal(countTotalScore([Answer.CORRECT, Answer.WRONG, Answer.WRONG, Answer.WRONG, Answer.WRONG], -1), -1);
-    assert.equal(countTotalScore([Answer.CORRECT, Answer.CORRECT, Answer.CORRECT, Answer.CORRECT, Answer.CORRECT, Answer.CORRECT, Answer.CORRECT, Answer.WRONG, Answer.WRONG, Answer.WRONG, Answer.WRONG], -1), -1);
-  });
 });
 
