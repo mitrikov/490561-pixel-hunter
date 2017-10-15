@@ -1,13 +1,6 @@
-import Template from './template';
-import Screen from './screen';
+import Template from '../template';
 
-const intro = new Template(`<div id="main" class="central__content">
-    <div id="intro" class="intro">
-      <h1 class="intro__asterisk">*</h1>
-      <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    </div>
-  </div>
-  <footer class="footer">
+const footer = new Template(`<footer class="footer">
     <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
     <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
     <div class="footer__social-links">
@@ -18,6 +11,4 @@ const intro = new Template(`<div id="main" class="central__content">
     </div>
   </footer>`);
 
-intro.element.querySelector(`.intro__asterisk`).addEventListener(`click`, () => Screen.GREETING.show(), false);
-
-export default intro;
+export default footer;

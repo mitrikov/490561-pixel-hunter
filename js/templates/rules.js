@@ -1,5 +1,6 @@
-import Template from './template';
-import Screen from './screen';
+import Template from '../template';
+import Screen from '../screen';
+import footer from "./footer";
 
 const rules = new Template(`<header class="header">
     <div class="header__back">
@@ -25,16 +26,7 @@ const rules = new Template(`<header class="header">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
   </div>
-  <footer class="footer">
-    <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
-    <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
-    </div>
-  </footer>`);
+  ${footer.element.innerHTML}`);
 
 const switchGoButton = (e) => {
   rules.element.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
@@ -42,11 +34,11 @@ const switchGoButton = (e) => {
 
 const onFormSubmit = (e) => {
   e.preventDefault();
-  Screen.FIRST_GAME.show();
+  Screen.game1.show();
 };
 
 rules.element.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
 rules.element.querySelector(`.rules__form`).addEventListener(`submit`, onFormSubmit, false);
-rules.element.querySelector(`.back`).addEventListener(`click`, () => Screen.GREETING.show(), false);
+rules.element.querySelector(`.back`).addEventListener(`click`, () => Screen.greeting.show(), false);
 
 export default rules;

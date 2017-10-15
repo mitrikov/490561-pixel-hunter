@@ -10,4 +10,8 @@ export default class Template {
     activeScreen.innerHTML = ``;
     activeScreen.appendChild(this.element);
   }
+
+  static setControllers(callback) {
+    callback();
+  }
 }

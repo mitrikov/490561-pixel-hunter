@@ -3,7 +3,7 @@ import Answer from './answer';
 const countTotalScore = (answers, lives = Answer.MAX_LIVES) => {
   let totalScore;
 
-  if (answers.length < Answer.MAX_COUNT) {
+  if (answers.length < Answer.MAX_COUNT || lives < 0) {
     totalScore = -1;
   } else {
     totalScore = answers.reduce((sum, current) => sum + current);
