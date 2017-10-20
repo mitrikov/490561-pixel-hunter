@@ -1,14 +1,10 @@
 import Template from '../template';
-import Screen from '../screen';
-import footer from "./footer";
+import Component from './components/component';
+import controllers from '../controllers/stats';
+import screens from "../test";
 
 const stats = new Template(`<header class="header">
-    <div class="header__back">
-      <button class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.svg" width="101" height="44">
-      </button>
-    </div>
+    ${Component.backButton}
   </header>
   <div class="result">
     <h1>Победа!</h1>
@@ -110,8 +106,10 @@ const stats = new Template(`<header class="header">
       </tr>
     </table>
   </div>
- ${footer.element.innerHTML}`);
+  ${Component.footer}`);
 
-stats.element.querySelector(`.back`).addEventListener(`click`, () => Screen.greeting.show(), false);
+stats.setControllers(() => controllers(stats));
+
+screens.stats = stats;
 
 export default stats;

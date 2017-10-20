@@ -1,6 +1,8 @@
 import Template from '../template';
-import Screen from '../screen';
-import footer from "./footer";
+import Component from './components/component';
+import controllers from '../controllers/intro';
+import screens from "../test";
+
 
 const intro = new Template(`<div id="main" class="central__content">
     <div id="intro" class="intro">
@@ -8,8 +10,10 @@ const intro = new Template(`<div id="main" class="central__content">
       <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
     </div>
   </div>
- ${footer.element.innerHTML}`);
+  ${Component.footer}`);
 
-intro.element.querySelector(`.intro__asterisk`).addEventListener(`click`, () => Screen.greeting.show(), false);
+screens.intro = intro;
+
+intro.setControllers(() => controllers(intro));
 
 export default intro;

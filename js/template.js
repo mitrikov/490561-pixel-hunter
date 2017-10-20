@@ -1,8 +1,8 @@
 const activeScreen = document.querySelector(`main.central`);
 
 export default class Template {
-  constructor(code) {
-    this.element = document.createElement(`div`);
+  constructor(code, elementName = `div`) {
+    this.element = document.createElement(elementName);
     this.element.innerHTML = code;
   }
 
@@ -11,7 +11,7 @@ export default class Template {
     activeScreen.appendChild(this.element);
   }
 
-  static setControllers(callback) {
+  setControllers(callback) {
     callback();
   }
 }

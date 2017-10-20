@@ -1,6 +1,7 @@
 import Template from '../template';
-import Screen from '../screen';
-import footer from "./footer";
+import Component from './components/component';
+import controllers from '../controllers/greeting';
+import screens from "../test";
 
 const greeting = new Template(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -15,8 +16,10 @@ const greeting = new Template(`<div class="greeting central--blur">
     </div>
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>
-  ${footer.element.innerHTML}`);
+${Component.footer}`);
 
-greeting.element.querySelector(`.greeting__continue`).addEventListener(`click`, () => Screen.rules.show(), false);
+greeting.setControllers(() => controllers(greeting));
+
+screens.greeting = greeting;
 
 export default greeting;
