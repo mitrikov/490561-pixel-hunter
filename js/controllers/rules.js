@@ -9,8 +9,7 @@ const controllers = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     gameData.userName = screens.rules.element.querySelector(`.rules__input`).value;
-    gameData.currentQuestionId = 0;
-    screens[`question-0`].show();
+    screens.game.show();
   };
 
   screens.rules.element.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);

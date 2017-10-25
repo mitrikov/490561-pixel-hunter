@@ -1,10 +1,11 @@
 import images from '../data/images';
-import games from '../data/games';
+
+const GAME_TYPES = 3;
 
 export default class Question {
   constructor(questionId, questionType) {
     this.id = questionId;
-    this.type = questionType ? questionType : Math.round(Math.random() * (games.length - 1));
+    this.type = questionType ? questionType : Math.round(Math.random() * (GAME_TYPES - 1));
     switch (this.type) {
       case 0 :
         this.images = this.shuffleImages([images.randomPainting, images.randomPhoto]);

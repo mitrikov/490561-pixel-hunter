@@ -3,13 +3,14 @@ import Question from '../classes/question';
 
 export default {
   userName: ``,
-  currentQuestionId: 0,
+  currentQuestionId: -1,
   lives: Answer.MAX_LIVES,
   questions: new Array(Answer.MAX_COUNT),
   answers: [],
+
   // Для следующих значений думаю выделить отдельный объект result = {
   speedBonusCount: 0, // Пока обычные значения потом будут функции подсчета
-  slowPenaltyCount: 1, // Пока обычные значения потом будут функции подсчета
+  slowPenaltyCount: 0, // Пока обычные значения потом будут функции подсчета
   get totalScore() {
     if (this.answers.length < Answer.MAX_COUNT || this.isGameFailed) {
       this._totalScore = -1;
