@@ -1,18 +1,21 @@
-import Screen from '../screen';
+import screens from '../data/screens';
+import gameData from '../data/game-data';
 
-const controllers = (rules) => {
+const controllers = () => {
   const switchGoButton = (e) => {
-    rules.element.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
+    screens.rules.element.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    Screen.games[0].show();
+    gameData.userName = screens.rules.element.querySelector(`.rules__input`).value;
+    gameData.currentQuestionId = 0;
+    screens[`question-0`].show();
   };
 
-  rules.element.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
-  rules.element.querySelector(`.rules__form`).addEventListener(`submit`, onFormSubmit, false);
-  rules.element.querySelector(`.back`).addEventListener(`click`, () => Screen.greeting.show(), false);
+  screens.rules.element.querySelector(`.rules__input`).addEventListener(`input`, switchGoButton, false);
+  screens.rules.element.querySelector(`.rules__form`).addEventListener(`submit`, onFormSubmit, false);
+  screens.rules.element.querySelector(`.back`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
 
 export default controllers;

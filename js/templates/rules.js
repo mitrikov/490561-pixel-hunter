@@ -1,8 +1,8 @@
-import Template from '../template';
-import Component from './components/component';
+import Template from '../classes/template';
+import Component from '../data/components';
 import controllers from '../controllers/rules';
 
-const rules = new Template(`<header class="header">
+const template = new Template(`<header class="header">
     ${Component.backButton}
   </header>
   <div class="rules">
@@ -23,6 +23,7 @@ const rules = new Template(`<header class="header">
   </div>
   ${Component.footer}`);
 
-rules.setControllers(() => controllers(rules));
+template.id = `rules`;
+template.controllers = controllers;
 
-export default rules;
+export default template;

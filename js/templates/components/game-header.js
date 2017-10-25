@@ -1,4 +1,4 @@
-import Component from './component';
+import Component from '../../data/components';
 
 const HeartItem = {
   EMPTY: `<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`,

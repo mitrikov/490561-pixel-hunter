@@ -1,7 +1,7 @@
-import Screen from '../screen';
+import Screen from '../load-modules';
 
-const controllers = (greeting) => {
+const setControllers = (greeting) => {
   greeting.element.querySelector(`.greeting__continue`).addEventListener(`click`, () => Screen.rules.show(), false);
 };
 
-export default controllers;
+export default setControllers;

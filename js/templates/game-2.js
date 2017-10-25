@@ -1,7 +1,10 @@
-const game2 = (question) => {
+import gameData from '../data/game-data';
+// import Template from '../classes/template';
+
+const game2 = () => {
   return `<form class="game__content  game__content--wide">
       <div class="game__option">
-        <img src="${question.images[0]}" alt="Option 1" width="705" height="455">
+        <img src="${gameData.currentQuestion.images[0].url}" alt="Option 1" width="705" height="455">
         <label class="game__answer  game__answer--photo">
           <input name="question1" type="radio" value="photo">
           <span>Фото</span>

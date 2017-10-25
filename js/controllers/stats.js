@@ -1,6 +1,6 @@
-import Screen from '../screen';
+import Screen from '../load-modules';
 
-const controllers = (stats) => {
+const setControllers = (stats) => {
   stats.element.querySelector(`.back`).addEventListener(`click`, () => Screen.greeting.show(), false);
 };
-export default controllers;
+export default setControllers;

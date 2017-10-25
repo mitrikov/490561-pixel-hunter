@@ -1,9 +1,8 @@
-import Template from '../template';
-import Component from './components/component';
+import Template from '../classes/template';
+import Component from '../data/components';
 import controllers from '../controllers/greeting';
-import screens from "../test";
 
-const greeting = new Template(`<div class="greeting central--blur">
+const template = new Template(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
     <div class="greeting__challenge">
@@ -18,8 +17,7 @@ const greeting = new Template(`<div class="greeting central--blur">
   </div>
 ${Component.footer}`);
 
-greeting.setControllers(() => controllers(greeting));
+template.id = `greeting`;
+template.controllers = controllers;
 
-screens.greeting = greeting;
-
-export default greeting;
+export default template;

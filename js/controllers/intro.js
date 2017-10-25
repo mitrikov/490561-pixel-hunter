@@ -1,6 +1,7 @@
-import Screen from '../screen';
+import screens from '../data/screens';
 
-const controllers = (intro) => {
-  intro.element.querySelector(`.intro__asterisk`).addEventListener(`click`, () => Screen.greeting.show(), false);
+const controllers = () => {
+  screens.intro.element.querySelector(`.intro__asterisk`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
+
 export default controllers;

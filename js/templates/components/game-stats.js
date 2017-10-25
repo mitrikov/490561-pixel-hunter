@@ -1,4 +1,4 @@
-import Answer from "../../answer";
+import Answer from "../../data/answer";
 
 const AnswerItem = {
   CORRECT: `<li class="stats__result stats__result--correct"></li>`,
@@ -10,7 +10,7 @@ const AnswerItem = {
 
 const gameStats = (answersArray) => {
   let answerList = ``;
-  for (let i = 0; i <= Answer.MAX_COUNT; i++) {
+  for (let i = 0; i < Answer.MAX_COUNT; i++) {
     switch (answersArray[i]) {
       case Answer.CORRECT : answerList += AnswerItem.CORRECT; break;
       case Answer.FAST : answerList += AnswerItem.FAST; break;
