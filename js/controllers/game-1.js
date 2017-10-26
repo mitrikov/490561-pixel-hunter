@@ -2,7 +2,7 @@ import screens from '../data/screens';
 import Answer from '../data/answer';
 import gameData from '../data/game-data';
 
-const game1Controllers = () => {
+const game1Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
   const radioBoxes = form.querySelectorAll(`input[type=radio]`);
 
@@ -22,4 +22,4 @@ const game1Controllers = () => {
   screens.game.element.querySelector(`.back`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
 
-export default game1Controllers;
+export default game1Controller;

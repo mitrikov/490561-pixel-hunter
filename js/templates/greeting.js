@@ -1,6 +1,6 @@
 import Template from '../classes/template';
-import Component from '../data/components';
-import controllers from '../controllers/greeting';
+import components from '../data/components';
+import controller from '../controllers/greeting';
 
 const template = new Template(`<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -15,9 +15,9 @@ const template = new Template(`<div class="greeting central--blur">
     </div>
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>
-${Component.footer}`);
+${components.footer}`);
 
 template.id = `greeting`;
-template.controllers = controllers;
+template.controllers = controller;
 
 export default template;

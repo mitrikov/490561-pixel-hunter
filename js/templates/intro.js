@@ -1,6 +1,6 @@
 import Template from '../classes/template';
-import Component from '../data/components';
-import controllers from '../controllers/intro';
+import components from '../data/components';
+import controller from '../controllers/intro';
 
 const template = new Template(`<div id="main" class="central__content">
     <div id="intro" class="intro">
@@ -8,9 +8,9 @@ const template = new Template(`<div id="main" class="central__content">
       <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
     </div>
   </div>
-  ${Component.footer}`);
+  ${components.footer}`);
 
 template.id = `intro`;
-template.controllers = controllers;
+template.controllers = controller;
 
 export default template;

@@ -1,34 +1,34 @@
-import Component from '../data/components';
-import gameData from '../data/game-data';
+import components from '../data/components';
+import GameData from '../data/game-data';
 import GameTemplate from "../classes/game-template";
 
 import game1Template from '../templates/game-1';
 import game2Template from '../templates/game-2';
 import game3Template from '../templates/game-3';
-import game1Controllers from '../controllers/game-1';
-import game2Controllers from '../controllers/game-2';
-import game3Controllers from '../controllers/game-3';
+import game1Controller from '../controllers/game-1';
+import game2Controller from '../controllers/game-2';
+import game3Controller from '../controllers/game-3';
 
-const game = {
+const Game = {
   templates: [game1Template, game2Template, game3Template],
-  controllers: [game1Controllers, game2Controllers, game3Controllers]
+  controllers: [game1Controller, game2Controller, game3Controller]
 };
 
 const tasks = [`Угадайте для каждого изображения фото или рисунок?`, `Угадай, фото или рисунок?`, `Найдите рисунок среди изображений`];
 
 const template = new GameTemplate(() => {
-  return `${Component.gameHeader(gameData.lives)}
+  return `${components.gameHeader(GameData.lives)}
       <div class="game">
-      <p class="game__task">${tasks[gameData.currentQuestion.type]}</p>
-      ${game.templates[gameData.currentQuestion.type].call()}
-      ${Component.gameStats(gameData.answers)}
+      <p class="game__task">${tasks[GameData.currentQuestion.type]}</p>
+      ${Game.templates[GameData.currentQuestion.type].call()}
+      ${components.gameStats(GameData.answers)}
       </div>
-    ${Component.footer}`;
+    ${components.footer}`;
 });
 
 template.id = `game`;
 template.controllers = () => {
-  return game.controllers[gameData.currentQuestion.type].call();
+  return Game.controllers[GameData.currentQuestion.type].call();
 };
 
 export default template;

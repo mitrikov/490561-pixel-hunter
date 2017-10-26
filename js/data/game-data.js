@@ -1,6 +1,9 @@
 import Answer from './answer';
 import Question from '../classes/question';
 
+/*
+* GameData*/
+
 export default {
   userName: ``,
   currentQuestionId: -1,

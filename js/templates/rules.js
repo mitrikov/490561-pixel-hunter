@@ -1,9 +1,9 @@
 import Template from '../classes/template';
-import Component from '../data/components';
-import controllers from '../controllers/rules';
+import components from '../data/components';
+import controller from '../controllers/rules';
 
 const template = new Template(`<header class="header">
-    ${Component.backButton}
+    ${components.backButton}
   </header>
   <div class="rules">
     <h1 class="rules__title">Правила</h1>
@@ -21,9 +21,9 @@ const template = new Template(`<header class="header">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
   </div>
-  ${Component.footer}`);
+  ${components.footer}`);
 
 template.id = `rules`;
-template.controllers = controllers;
+template.controllers = controller;
 
 export default template;

@@ -1,8 +1,8 @@
 import screens from '../data/screens';
 import Answer from '../data/answer';
-import gameData from '../data/game-data';
+import GameData from '../data/game-data';
 
-const game3Controllers = () => {
+const game3Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
   const pictures = form.querySelectorAll(`.game__option`);
 
@@ -17,8 +17,8 @@ const game3Controllers = () => {
   };
 
   const checkAnswer = (e) => {
-    const condition = gameData.currentQuestion.images[getImageIndex(e.target)].type === `paint`;
-    gameData.answer = condition ? Answer.CORRECT : Answer.WRONG;
+    const condition = GameData.currentQuestion.images[getImageIndex(e.target)].type === `paint`;
+    GameData.answer = condition ? Answer.CORRECT : Answer.WRONG;
   };
 
   const handler = (e) => {
@@ -30,4 +30,4 @@ const game3Controllers = () => {
   screens.game.element.querySelector(`.back`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
 
-export default game3Controllers;
+export default game3Controller;

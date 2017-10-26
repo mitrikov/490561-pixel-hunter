@@ -1,3 +1,4 @@
+// Собирает компоненты экранов в один объект
 import footer from '../templates/components/footer';
 import backButton from '../templates/components/back-button';
 import gameHeader from '../templates/components/game-header';

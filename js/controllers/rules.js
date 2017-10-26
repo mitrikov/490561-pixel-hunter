@@ -1,14 +1,14 @@
 import screens from '../data/screens';
-import gameData from '../data/game-data';
+import GameData from '../data/game-data';
 
-const controllers = () => {
+const controller = () => {
   const switchGoButton = (e) => {
     screens.rules.element.querySelector(`.rules__button`).disabled = e.currentTarget.value === ``;
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    gameData.userName = screens.rules.element.querySelector(`.rules__input`).value;
+    GameData.userName = screens.rules.element.querySelector(`.rules__input`).value;
     screens.game.show();
   };
 
@@ -17,4 +17,4 @@ const controllers = () => {
   screens.rules.element.querySelector(`.back`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
 
-export default controllers;
+export default controller;
