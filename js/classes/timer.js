@@ -1,9 +1,11 @@
+const DEFAULT_TIME = 25;
+
 export default class Timer {
   constructor(time) {
-    this._value = time;
+    this._value = time ? time : DEFAULT_TIME;
   }
 
-  getValue() {
+  get value() {
     return this._value;
   }
 
@@ -15,5 +17,9 @@ export default class Timer {
     if (!this.isEnded()) {
       --this._value;
     }
+  }
+
+  reset() {
+    this._value = DEFAULT_TIME;
   }
 }

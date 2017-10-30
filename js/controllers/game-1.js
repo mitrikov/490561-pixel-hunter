@@ -7,18 +7,21 @@ const game1Controller = () => {
   const radioBoxes = form.querySelectorAll(`input[type=radio]`);
 
   const checkAnswer = () => {
-    const condition = (radioBoxes[0].checked && gameData.currentQuestion.images[0].type === `photo` || radioBoxes[1].checked && gameData.currentQuestion.images[0].type === `paint`) && (radioBoxes[2].checked && gameData.currentQuestion.images[1].type === `photo` || radioBoxes[3].checked && gameData.currentQuestion.images[1].type === `paint`);
-    gameData.answer = condition ? Answer.CORRECT : Answer.WRONG;
+    const imgTypes = [gameData.currentQuestion.images[0].type, gameData.currentQuestion.images[1].type];
+    const isFirstImageCorrectlyChecked = radioBoxes[0].checked && imgTypes[0] === `photo` || radioBoxes[1].checked && imgTypes[0] === `paint`;
+    const isSecondImageCorrectlyChecked = radioBoxes[2].checked && imgTypes[1] === `photo` || radioBoxes[3].checked && imgTypes[1] === `paint`;
+    const isAnswerCorrect = isFirstImageCorrectlyChecked && isSecondImageCorrectlyChecked;
+    gameData.answer = isAnswerCorrect ? Answer.CORRECT : Answer.WRONG;
   };
 
-  const handler = () => {
+  const onAnswer = () => {
     if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
       checkAnswer();
       screens.game.show();
     }
   };
 
-  form.addEventListener(`change`, handler, false);
+  form.addEventListener(`change`, onAnswer, false);
   screens.game.element.querySelector(`.back`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
 

@@ -1,1 +1,2 @@
-export default {};
+const screens = {};
+export default screens;

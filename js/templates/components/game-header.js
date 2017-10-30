@@ -8,7 +8,6 @@ const HeartItem = {
 const gameHeader = (livesCount) => {
   let hearts = new Array(3 - livesCount).fill(HeartItem.EMPTY).join(``);
   hearts += new Array(livesCount).fill(HeartItem.FULL).join(``);
-
   return `<header class="header">
   ${components.backButton}
   <h1 class="game__timer">NN</h1>

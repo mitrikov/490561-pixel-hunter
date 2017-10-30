@@ -12,11 +12,21 @@ const gameStats = (answersArray) => {
   let answerList = ``;
   for (let i = 0; i < Answer.MAX_COUNT; i++) {
     switch (answersArray[i]) {
-      case Answer.CORRECT : answerList += AnswerItem.CORRECT; break;
-      case Answer.FAST : answerList += AnswerItem.FAST; break;
-      case Answer.SLOW : answerList += AnswerItem.SLOW; break;
-      case Answer.WRONG : answerList += AnswerItem.WRONG; break;
-      default : answerList += AnswerItem.UNKNOWN; break;
+      case Answer.CORRECT :
+        answerList += AnswerItem.CORRECT;
+        break;
+      case Answer.FAST :
+        answerList += AnswerItem.FAST;
+        break;
+      case Answer.SLOW :
+        answerList += AnswerItem.SLOW;
+        break;
+      case Answer.WRONG :
+        answerList += AnswerItem.WRONG;
+        break;
+      default :
+        answerList += AnswerItem.UNKNOWN;
+        break;
     }
   }
 

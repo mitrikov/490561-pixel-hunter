@@ -21,19 +21,19 @@ export default {
   ],
 
   get randomPainting() {
-    let image = {};
-    const randomIndex = Math.round(Math.random() * (this.photos.length - 1));
-    image.url = this.paintings[randomIndex];
-    image.type = `paint`;
-    return image;
+    const randomIndex = Math.round(Math.random() * (this.paintings.length - 1));
+    return {
+      url: this.photos[randomIndex],
+      type: `paint`
+    };
   },
 
   get randomPhoto() {
-    let image = {};
     const randomIndex = Math.round(Math.random() * (this.photos.length - 1));
-    image.url = this.photos[randomIndex];
-    image.type = `photo`;
-    return image;
+    return {
+      url: this.photos[randomIndex],
+      type: `photo`
+    };
   },
 
   get randomImage() {

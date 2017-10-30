@@ -7,16 +7,19 @@ const game2Controller = () => {
   const radioBoxes = form.querySelectorAll(`input[type=radio]`);
 
   const checkAnswer = () => {
-    const condition = radioBoxes[0].checked && gameData.currentQuestion.images[0].type === `photo` || radioBoxes[1].checked && gameData.currentQuestion.images[0].type === `paint`;
-    gameData.answer = condition ? Answer.CORRECT : Answer.WRONG;
+    const imgType = gameData.currentQuestion.images[0].type;
+    const isPhotoCorrectlyChecked = radioBoxes[0].checked && imgType === `photo`;
+    const isPaintCorrectlyChecked = radioBoxes[1].checked && imgType === `paint`;
+    const isAnswerCorrect = isPhotoCorrectlyChecked || isPaintCorrectlyChecked;
+    gameData.answer = isAnswerCorrect ? Answer.CORRECT : Answer.WRONG;
   };
 
-  const handler = () => {
+  const onAnswer = () => {
     checkAnswer();
     screens.game.show();
   };
 
-  screens.game.element.querySelector(`.game__content`).addEventListener(`change`, handler, false);
+  screens.game.element.querySelector(`.game__content`).addEventListener(`change`, onAnswer, false);
   screens.game.element.querySelector(`.back`).addEventListener(`click`, () => screens.greeting.show(), false);
 };
 
