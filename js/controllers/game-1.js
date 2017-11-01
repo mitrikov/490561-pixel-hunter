@@ -6,24 +6,6 @@ const game1Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
   const radioBoxes = form.querySelectorAll(`input[type=radio]`);
 
-  const pushAnswer = (isAnswerCorrect) => { // Вынесу в отдельный модуль
-    if (isAnswerCorrect) {
-      switch (GameData.currentAnswerState) {
-        case `fast` :
-          GameData.answer = Answer.FAST;
-          break;
-        case `slow` :
-          GameData.answer = Answer.SLOW;
-          break;
-        case `normal` :
-          GameData.answer = Answer.CORRECT;
-          break;
-      }
-    } else {
-      GameData.answer = Answer.WRONG;
-    }
-  };
-
   const isAnswerCorrect = () => {
     const imgTypes = [GameData.currentQuestion.images[0].type, GameData.currentQuestion.images[1].type];
     const isFirstImageCorrectlyChecked = radioBoxes[0].checked && imgTypes[0] === `photo` || radioBoxes[1].checked && imgTypes[0] === `paint`;
@@ -33,7 +15,7 @@ const game1Controller = () => {
 
   const onAnswer = () => {
     if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
-      pushAnswer(isAnswerCorrect());
+      GameData.answer = isAnswerCorrect() ? Answer[GameData.currentAnswerState] : Answer.WRONG;
       screens.game.show();
     }
   };

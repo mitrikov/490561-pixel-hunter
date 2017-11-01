@@ -26,11 +26,11 @@ export default class Timer {
     if (!this.isEnded()) {
       --this._value;
       if (this.value >= Time.FAST) {
-        this._state = `fast`;
+        this._state = `FAST`;
       } else if (this.value >= Time.SLOW) {
-        this._state = `normal`;
+        this._state = `CORRECT`;
       } else {
-        this._state = `slow`;
+        this._state = `SLOW`;
       }
     }
   }
