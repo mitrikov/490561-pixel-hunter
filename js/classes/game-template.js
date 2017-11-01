@@ -28,6 +28,7 @@ export default class GameTemplate extends Template {
     this._timerElement.innerHTML = this._timer.value;
     this._updateTimer = setInterval(() => {
       this._timer.tick();
+      gameData.currentAnswerState = this._timer.state;
       this._timerElement.innerHTML = this._timer.value;
       if (this._timer.isEnded()) {
         gameData.answer = Answer.WRONG;

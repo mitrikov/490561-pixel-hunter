@@ -1,12 +1,21 @@
-const DEFAULT_TIME = 25;
+const Time = {
+  BEGIN: 30,
+  FAST: 20,
+  SLOW: 10
+};
 
 export default class Timer {
   constructor(time) {
-    this._value = time ? time : DEFAULT_TIME;
+    this._value = time ? time : Time.BEGIN;
+    this._state = `fast`;
   }
 
   get value() {
     return this._value;
+  }
+
+  get state() {
+    return this._state;
   }
 
   isEnded() {
@@ -16,10 +25,18 @@ export default class Timer {
   tick() {
     if (!this.isEnded()) {
       --this._value;
+      if (this.value >= Time.FAST) {
+        this._state = `fast`;
+      } else if (this.value >= Time.SLOW) {
+        this._state = `normal`;
+      } else {
+        this._state = `slow`;
+      }
     }
   }
 
   reset() {
-    this._value = DEFAULT_TIME;
+    this._value = Time.BEGIN;
+    this._state = `fast`;
   }
 }

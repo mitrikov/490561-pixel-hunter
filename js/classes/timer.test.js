@@ -30,4 +30,16 @@ describe(`Объект Timer`, () => {
     timer.tick();
     assert.equal(timer.value, 0);
   });
+
+  it(`Если время меньше 20 секунд возвращает state - normal`, () => {
+    let timer = new Timer(20);
+    timer.tick();
+    assert.equal(timer.state, `normal`);
+  });
+
+  it(`Если время меньше 10 секунд возвращает state - slow`, () => {
+    let timer = new Timer(10);
+    timer.tick();
+    assert.equal(timer.state, `slow`);
+  });
 });

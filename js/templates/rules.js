@@ -1,8 +1,13 @@
 import Template from '../classes/template';
 import components from '../data/components';
 import controller from '../controllers/rules';
+import GameData from '../data/game-data';
 
-const template = new Template(`<header class="header">
+const template = new Template(() => {
+  const userName = GameData.userName;
+  const disabled = userName ? `` : `disabled`;
+
+  return `<header class="header">
     ${components.backButton}
   </header>
   <div class="rules">
@@ -17,11 +22,12 @@ const template = new Template(`<header class="header">
       Готовы?
     </p>
     <form class="rules__form">
-      <input class="rules__input" type="text" placeholder="Ваше Имя">
-      <button class="rules__button  continue" type="submit" disabled>Go!</button>
+      <input class="rules__input" type="text" placeholder="Ваше Имя" value="${userName}">
+      <button class="rules__button  continue" type="submit" ${disabled}>Go!</button>
     </form>
   </div>
-  ${components.footer}`);
+  ${components.footer}`;
+});
 
 template.id = `rules`;
 template.controllers = controller;
