@@ -31,6 +31,18 @@ const template = new Template(() => {
     }
   }
 
+  fetch(`https://es.dump.academy/pixel-hunter/stats/:vokirtim`, {
+    method: `POST`,
+    body: JSON.stringify({
+      userName: GameData.userName,
+      answers: GameData.answers,
+      lives: GameData.lives
+    }),
+    headers: {
+      'Content-Type': `application/json`
+    }
+  });
+
   if (speedBonusCount > 0) {
     speedBonus = `<tr>
         <td></td>
