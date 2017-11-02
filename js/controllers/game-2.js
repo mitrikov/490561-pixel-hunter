@@ -1,5 +1,4 @@
 import screens from '../data/screens';
-import Answer from '../data/answer';
 import GameData from '../data/game-data';
 
 const game2Controller = () => {
@@ -14,11 +13,10 @@ const game2Controller = () => {
   };
 
   const onAnswer = () => {
-    GameData.answer = isAnswerCorrect() ? Answer[GameData.currentAnswerState] : Answer.WRONG;
-    screens.game.show();
+    screens.game.answer(isAnswerCorrect());
   };
 
-  const onBackButtonClick = () => { // Вынесу в отдельный модуль
+  const onBackButtonClick = () => {
     GameData.resetCurrentState();
     screens.greeting.show();
   };

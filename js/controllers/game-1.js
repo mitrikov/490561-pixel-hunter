@@ -1,5 +1,4 @@
 import screens from '../data/screens';
-import Answer from '../data/answer';
 import GameData from '../data/game-data';
 
 const game1Controller = () => {
@@ -15,12 +14,11 @@ const game1Controller = () => {
 
   const onAnswer = () => {
     if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
-      GameData.answer = isAnswerCorrect() ? Answer[GameData.currentAnswerState] : Answer.WRONG;
-      screens.game.show();
+      screens.game.answer(isAnswerCorrect());
     }
   };
 
-  const onBackButtonClick = () => { // Вынесу в отдельный модуль
+  const onBackButtonClick = () => {
     GameData.resetCurrentState();
     screens.greeting.show();
   };

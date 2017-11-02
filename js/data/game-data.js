@@ -10,7 +10,6 @@ const GameData = {
   lives: Answer.MAX_LIVES,
   questions: new Array(Answer.MAX_COUNT),
   answers: [],
-  currentAnswerState: ``,
 
   get totalScore() {
     if (this.answers.length < Answer.MAX_COUNT || this.isGameFailed) {
