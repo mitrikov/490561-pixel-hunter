@@ -1,4 +1,5 @@
 import images from '../data/images';
+import GameType from '../data/game-type';
 /*
 *   Question - класс описывающий структуру игрового вопроса
 *   - id - идентификатор
@@ -6,21 +7,24 @@ import images from '../data/images';
 *   - images - массив изображений, используемых в вопросе. Генерируются случайным образом из модуля images
 * */
 
-const GAME_TYPES = 3;
-
 export default class Question {
   constructor(questionId, questionType) {
     this.id = questionId;
-    this.type = questionType ? questionType : Math.round(Math.random() * (GAME_TYPES - 1));
+    this.type = questionType ? questionType : Math.round(Math.random() * (GameType.MAX_COUNT - 1));
     switch (this.type) {
-      case 0 :
+      case GameType.TWO_IMAGES :
         this.images = this.shuffleImages([images.randomPainting, images.randomPhoto]);
         break;
-      case 1 :
+      case GameType.ONE_IMAGE :
         this.images = [images.randomImage];
         break;
-      case 2 :
-        this.images = this.shuffleImages([images.randomPainting, images.randomPhoto, images.randomPhoto]);
+      case GameType.THREE_IMAGES :
+        this.isLookingForPainting = Math.round(Math.random());
+        if (this.isLookingForPainting) {
+          this.images = this.shuffleImages([images.randomPainting, images.randomPhoto, images.randomPhoto]);
+        } else {
+          this.images = this.shuffleImages([images.randomPhoto, images.randomPainting, images.randomPainting]);
+        }
         break;
     }
   }

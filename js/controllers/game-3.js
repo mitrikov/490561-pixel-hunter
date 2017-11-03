@@ -7,7 +7,7 @@ const game3Controller = () => {
 
   const isAnswerCorrect = (e) => {
     const picIndex = [...pictures].indexOf(e.target);
-    return GameData.currentQuestion.images[picIndex].type === `paint`;
+    return GameData.currentQuestion.isLookingForPainting ? GameData.currentQuestion.images[picIndex].type === `paint` : GameData.currentQuestion.images[picIndex].type === `photo`;
   };
 
   const onAnswer = (e) => {
