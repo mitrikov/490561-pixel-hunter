@@ -36,46 +36,46 @@ const getStatsRow = (number, answers) => {
 
   if (speedBonusCount > 0) {
     speedBonus = `<tr>
-        <td></td>
-        <td class="result__extra">Бонус за скорость:</td>
-        <td class="result__extra">${speedBonusCount}&nbsp;<span class="stats__result stats__result--fast"></span></td>
-        <td class="result__points">×&nbsp;50</td>
-        <td class="result__total">${speedBonusCount * 50}</td>
-      </tr>`;
+      <td></td>
+      <td class="result__extra">Бонус за скорость:</td>
+      <td class="result__extra">${speedBonusCount}&nbsp;<span class="stats__result stats__result--fast"></span></td>
+      <td class="result__points">×&nbsp;50</td>
+      <td class="result__total">${speedBonusCount * 50}</td>
+    </tr>`;
   }
 
   if (liveBonusCount > 0) {
     liveBonus = `<tr>
-        <td></td>
-        <td class="result__extra">Бонус за жизни:</td>
-        <td class="result__extra">${liveBonusCount}&nbsp;<span class="stats__result stats__result--alive"></span></td>
-        <td class="result__points">×&nbsp;50</td>
-        <td class="result__total">${liveBonusCount * 50}</td>
-      </tr>`;
+      <td></td>
+      <td class="result__extra">Бонус за жизни:</td>
+      <td class="result__extra">${liveBonusCount}&nbsp;<span class="stats__result stats__result--alive"></span></td>
+      <td class="result__points">×&nbsp;50</td>
+      <td class="result__total">${liveBonusCount * 50}</td>
+    </tr>`;
   }
 
   if (slowPenaltyCount > 0) {
     slowPenalty = `<tr>
-        <td></td>
-        <td class="result__extra">Штраф за медлительность:</td>
-        <td class="result__extra">${slowPenaltyCount}&nbsp;<span class="stats__result stats__result--slow"></span></td>
-        <td class="result__points">×&nbsp;50</td>
-        <td class="result__total">-${slowPenaltyCount * 50}</td>
-      </tr>`;
+      <td></td>
+      <td class="result__extra">Штраф за медлительность:</td>
+      <td class="result__extra">${slowPenaltyCount}&nbsp;<span class="stats__result stats__result--slow"></span></td>
+      <td class="result__points">×&nbsp;50</td>
+      <td class="result__total">-${slowPenaltyCount * 50}</td>
+    </tr>`;
   }
 
   return `<tr>
-  <td class="result__number">${number}.</td>
-    <td colspan="2">
-      ${Component.gameStats(answers)}
-    </td>
-    <td class="result__points">×&nbsp;100</td>
-    <td class="result__total">${totalScore}</td>
-  </tr>
-  <tr>
-  ${speedBonus}
-  ${liveBonus}
-  ${slowPenalty}
+    <td class="result__number">${number}.</td>
+      <td colspan="2">
+        ${Component.gameStats(answers)}
+      </td>
+      <td class="result__points">×&nbsp;100</td>
+      <td class="result__total">${totalScore}</td>
+    </tr>
+    <tr>
+    ${speedBonus}
+    ${liveBonus}
+    ${slowPenalty}
   </tr>`;
 };
 
