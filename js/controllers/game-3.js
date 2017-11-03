@@ -15,9 +15,12 @@ const game3Controller = () => {
   };
 
   const onBackButtonClick = () => {
-    GameData.resetCurrentState();
-    screens.game.resetTimer();
-    screens.greeting.show();
+    let isUserWantToReturn = confirm(`Ваши текущие результаты будут потеряны. Вы действительно хотите вернуться в начало?`);
+    if (isUserWantToReturn) {
+      GameData.resetCurrentState();
+      screens.game.resetTimer();
+      screens.greeting.show();
+    }
   };
 
   form.addEventListener(`click`, onAnswer, false);

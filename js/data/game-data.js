@@ -13,7 +13,8 @@ const GameData = {
   previousStats: false,
 
   countTotalScore(answers = this.answers) {
-    return answers.reduce((sum, current) => sum + current) + this.lives * 50;
+    const lives = Answer.MAX_LIVES - answers.filter((element) => element === Answer.WRONG).length;
+    return answers.reduce((sum, current) => sum + current) + lives * 50;
   },
 
   set answer(value) {
