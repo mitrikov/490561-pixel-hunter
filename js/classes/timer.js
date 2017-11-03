@@ -9,10 +9,6 @@ export default class Timer {
     return this._value;
   }
 
-  get state() {
-    return this._state;
-  }
-
   isEnded() {
     return this._value <= 0;
   }

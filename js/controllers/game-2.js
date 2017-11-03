@@ -18,6 +18,7 @@ const game2Controller = () => {
 
   const onBackButtonClick = () => {
     GameData.resetCurrentState();
+    screens.game.resetTimer();
     screens.greeting.show();
   };
 

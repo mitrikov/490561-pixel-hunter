@@ -10,15 +10,17 @@ const GameData = {
   lives: Answer.MAX_LIVES,
   questions: new Array(Answer.MAX_COUNT),
   answers: [],
+  previousStats: false,
 
-  get totalScore() {
-    if (this.answers.length < Answer.MAX_COUNT || this.isGameFailed) {
-      this._totalScore = -1;
+  countTotalScore(answers = this.answers) {
+    let totalScore;
+    if (answers.length < Answer.MAX_COUNT || this.isGameFailed) {
+      totalScore = -1;
     } else {
-      this._totalScore = this.answers.reduce((sum, current) => sum + current);
-      this._totalScore += this.lives * 50;
+      totalScore = answers.reduce((sum, current) => sum + current);
+      totalScore += this.lives * 50;
     }
-    return this._totalScore;
+    return totalScore;
   },
 
   set answer(value) {
@@ -46,6 +48,33 @@ const GameData = {
     this.currentQuestionId = -1;
     this.lives = Answer.MAX_LIVES;
     this.answers.fill(Answer.UNKNOWN);
+  },
+
+  downloadStats() {
+    fetch(`https://es.dump.academy/pixel-hunter/stats/${this.userName}`)
+        .then((result) => {
+          if (result.headers.get(`Content-Type`) && result.headers.get(`Content-Type`).indexOf(`application/json`) >= 0) {
+            return result.json();
+          } else {
+            return Promise.resolve(false);
+          }
+        }).then((res) => {
+          this.previousStats = res ? res : false;
+          console.log(this.previousStats);
+        });
+  },
+
+  uploadStats() {
+    fetch(`https://es.dump.academy/pixel-hunter/stats/${this.userName}`, {
+      method: `POST`,
+      body: JSON.stringify({
+        lives: this.lives,
+        answers: this.answers,
+      }),
+      headers: {
+        'Content-Type': `application/json`
+      }
+    });
   }
 };
 

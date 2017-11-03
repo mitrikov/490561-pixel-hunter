@@ -4,6 +4,8 @@ import controller from '../controllers/stats';
 import GameData from '../data/game-data';
 import Answer from '../data/answer';
 
+const PREVIOUS_GAMES_COUNT = 3;
+
 const template = new Template(() => {
   let result;
   let totalScore;
@@ -13,11 +15,33 @@ const template = new Template(() => {
   let liveBonusCount = GameData.lives;
   let slowPenalty = ``;
   let slowPenaltyCount = 0;
+  let previousGames = [];
+
+  GameData.uploadStats();
+
+  if (GameData.previousStats) {
+    for (let i = 0; i < PREVIOUS_GAMES_COUNT; i++) {
+      const stats = GameData.previousStats.pop();
+      if (stats) {
+        previousGames.push(`<table class="result__table">
+        <tr>
+          <td class="result__number">${i + 1}.</td>
+            <td colspan="2">
+            ${Component.gameStats(stats.answers)}
+            </td>
+            <td class="result__points">×&nbsp;100</td>
+          <td class="result__total">${GameData.countTotalScore(stats.answers)}</td>
+         </tr>`);
+      } else {
+        break;
+      }
+    }
+  }
 
   if (GameData.isGameFailed) {
     totalScore = result = `FAIL`;
   } else {
-    totalScore = GameData.totalScore;
+    totalScore = GameData.countTotalScore();
     result = `Победа!`;
   }
 
@@ -30,18 +54,6 @@ const template = new Template(() => {
       slowPenaltyCount++;
     }
   }
-
-  fetch(`https://es.dump.academy/pixel-hunter/stats/:vokirtim`, {
-    method: `POST`,
-    body: JSON.stringify({
-      userName: GameData.userName,
-      answers: GameData.answers,
-      lives: GameData.lives
-    }),
-    headers: {
-      'Content-Type': `application/json`
-    }
-  });
 
   if (speedBonusCount > 0) {
     speedBonus = `<tr>
@@ -93,6 +105,7 @@ const template = new Template(() => {
       <tr>
         <td colspan="5" class="result__total  result__total--final">${totalScore}</td>
       </tr>
+      ${previousGames}
     </table>
   </div>
   ${Component.footer}`;
