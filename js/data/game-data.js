@@ -13,14 +13,7 @@ const GameData = {
   previousStats: false,
 
   countTotalScore(answers = this.answers) {
-    let totalScore;
-    if (answers.length < Answer.MAX_COUNT || this.isGameFailed) {
-      totalScore = -1;
-    } else {
-      totalScore = answers.reduce((sum, current) => sum + current);
-      totalScore += this.lives * 50;
-    }
-    return totalScore;
+    return answers.reduce((sum, current) => sum + current) + this.lives * 50;
   },
 
   set answer(value) {

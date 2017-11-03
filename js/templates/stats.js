@@ -18,12 +18,12 @@ const getStatsRow = (number, answers) => {
   let slowPenaltyCount = 0;
 
 
-  if (wrongAnswersCount >= 4) {
+  if (wrongAnswersCount >= Answer.MAX_LIVES + 1) {
     totalScore = `FAIL`;
   } else {
     totalScore = GameData.countTotalScore(answers);
 
-    for (let i of GameData.answers) {
+    for (let i of answers) {
       if (i === Answer.FAST) {
         speedBonusCount++;
       }
