@@ -6,52 +6,31 @@ import Answer from '../data/answer';
 
 const PREVIOUS_GAMES_COUNT = 3;
 
-const template = new Template(() => {
-  let result;
+const getStatsRow = (number, answers) => {
+  const wrongAnswersCount = answers.filter((element) => element === Answer.WRONG).length;
+
   let totalScore;
   let speedBonus = ``;
   let speedBonusCount = 0;
   let liveBonus = 0;
-  let liveBonusCount = GameData.lives;
+  let liveBonusCount = Answer.MAX_LIVES - wrongAnswersCount;
   let slowPenalty = ``;
   let slowPenaltyCount = 0;
-  let previousGames = [];
 
-  GameData.uploadStats();
 
-  if (GameData.previousStats) {
-    for (let i = 0; i < PREVIOUS_GAMES_COUNT; i++) {
-      const stats = GameData.previousStats.pop();
-      if (stats) {
-        previousGames.push(`<table class="result__table">
-        <tr>
-          <td class="result__number">${i + 1}.</td>
-            <td colspan="2">
-            ${Component.gameStats(stats.answers)}
-            </td>
-            <td class="result__points">×&nbsp;100</td>
-          <td class="result__total">${GameData.countTotalScore(stats.answers)}</td>
-         </tr>`);
-      } else {
-        break;
-      }
-    }
-  }
-
-  if (GameData.isGameFailed) {
-    totalScore = result = `FAIL`;
+  if (wrongAnswersCount >= 4) {
+    totalScore = `FAIL`;
   } else {
-    totalScore = GameData.countTotalScore();
-    result = `Победа!`;
-  }
+    totalScore = GameData.countTotalScore(answers);
 
-  for (let i of GameData.answers) {
-    if (i === Answer.FAST) {
-      speedBonusCount++;
-    }
+    for (let i of GameData.answers) {
+      if (i === Answer.FAST) {
+        speedBonusCount++;
+      }
 
-    if (i === Answer.SLOW) {
-      slowPenaltyCount++;
+      if (i === Answer.SLOW) {
+        slowPenaltyCount++;
+      }
     }
   }
 
@@ -85,23 +64,55 @@ const template = new Template(() => {
       </tr>`;
   }
 
+  return `<tr>
+  <td class="result__number">${number}.</td>
+    <td colspan="2">
+      ${Component.gameStats(answers)}
+    </td>
+    <td class="result__points">×&nbsp;100</td>
+    <td class="result__total">${totalScore}</td>
+  </tr>
+  <tr>
+  ${speedBonus}
+  ${liveBonus}
+  ${slowPenalty}
+  </tr>`;
+};
+
+const template = new Template(() => {
+  let result;
+  let totalScore;
+  let previousGames = [];
+
+  const currentGame = getStatsRow(1, GameData.answers);
+
+  GameData.uploadStats();
+
+  if (GameData.previousStats) {
+    for (let i = 0; i < PREVIOUS_GAMES_COUNT; i++) {
+      const stats = GameData.previousStats.pop();
+      if (stats) {
+        previousGames.push(getStatsRow(i + 2, stats.answers));
+      } else {
+        break;
+      }
+    }
+  }
+
+  if (GameData.isGameFailed) {
+    totalScore = result = `FAIL`;
+  } else {
+    totalScore = GameData.countTotalScore();
+    result = `Победа!`;
+  }
+
   return `<header class="header">
     ${Component.backButton}
   </header>
   <div class="result">
     <h1>${result}</h1>
     <table class="result__table">
-      <tr>
-        <td class="result__number">1.</td>
-        <td colspan="2">
-          ${Component.gameStats(GameData.answers)}
-        </td>
-        <td class="result__points">×&nbsp;100</td>
-        <td class="result__total">${totalScore}</td>
-      </tr>
-      ${speedBonus}
-      ${liveBonus}
-      ${slowPenalty}
+     ${currentGame}
       <tr>
         <td colspan="5" class="result__total  result__total--final">${totalScore}</td>
       </tr>

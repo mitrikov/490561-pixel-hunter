@@ -68,7 +68,6 @@ const GameData = {
     fetch(`https://es.dump.academy/pixel-hunter/stats/${this.userName}`, {
       method: `POST`,
       body: JSON.stringify({
-        lives: this.lives,
         answers: this.answers,
       }),
       headers: {
