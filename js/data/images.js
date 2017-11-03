@@ -4,7 +4,6 @@ export default {
     `https://k42.kn3.net/CF42609C8.jpg`,
     `https://liketheseasonblog.files.wordpress.com/2011/11/robert-downey-jr-photo-realistic-portrait-digital-painting-by-sheridan-johns-copyright-sheridan-johns.jpg?w=600`,
     `https://designyoutrust.com/wp-content/uploads7/ANATERESAFERNANDEZ.jpg`,
-    `http://www.ufunk.net/wp-content/uploads/2012/10/Tjalf-Sparnaay-photorealism-oil-painting-11.jpg`,
     // Animals
     `https://k42.kn3.net/D2F0370D6.jpg`,
 
@@ -17,9 +16,9 @@ export default {
     `http://www.listupon.com/wp-content/uploads/2014/05/photorealism.jpg`,
     `http://viola.bz/wp-content/uploads/2012/09/Beautiful-photorealistic-painting-by-Yigal-Ozeri-Israel-14.jpg`,
     `http://1995-2015.undo.net/Pressrelease/foto/1304604831b.jpg`,
-    // Food
-    `http://www.ufunk.net/wp-content/uploads/2012/10/Tjalf-Sparnaay-photorealism-oil-painting-10.jpg`,
-    `http://www.ufunk.net/wp-content/uploads/2012/10/Tjalf-Sparnaay-photorealism-oil-painting-1.jpg`
+    `http://mymodernmet.com/wp/wp-content/uploads/archive/GGW9Ybls01wgf-tWxDf0_1082129930.jpeg`,
+    `https://i.pinimg.com/736x/11/01/62/110162e68293f7d7f06f26fcd08759f6--landscape-oil-paintings-landscape-artists.jpg`,
+    `http://newyorkhistoryblog.org/wp-content/uploads/2014/05/church-catskillcreek-1847-washingtonctymus.jpg`,
   ],
   photos: [
     // People
@@ -46,18 +45,24 @@ export default {
     `https://prods3.imgix.net/images/articles/2012_07/burgerblends-xl.jpg`
   ],
 
+  used: [],
+
   get randomPainting() {
     const randomIndex = Math.round(Math.random() * (this.paintings.length - 1));
+    const paintingUrl = this.paintings.splice(randomIndex, 1).toString();
+    this.used.push(paintingUrl);
     return {
-      url: this.paintings.splice(randomIndex, 1).toString(),
+      url: paintingUrl,
       type: `paint`
     };
   },
 
   get randomPhoto() {
     const randomIndex = Math.round(Math.random() * (this.photos.length - 1));
+    const photoUrl = this.photos.splice(randomIndex, 1).toString();
+    this.used.push(photoUrl);
     return {
-      url: this.photos.splice(randomIndex, 1).toString(),
+      url: photoUrl,
       type: `photo`
     };
   },
@@ -65,5 +70,20 @@ export default {
   get randomImage() {
     const paintingOrPhoto = Math.round(Math.random());
     return paintingOrPhoto ? this.randomPainting : this.randomPhoto;
+  },
+
+  load() {
+    return new Promise((onLoad) => {
+      let image;
+      for (let url of this.used) {
+        image = new Image();
+        image.src = url;
+        image.onerror = () => {
+          this.photos.splice(this.photos.find(image.src), 1);
+          this.paintings.splice(this.paintings.find(image.src), 1)
+        };
+      }
+      image.onload = () => onLoad();
+    });
   }
 };

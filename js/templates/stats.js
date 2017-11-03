@@ -12,7 +12,7 @@ const getStatsRow = (number, answers) => {
   let totalScore;
   let speedBonus = ``;
   let speedBonusCount = 0;
-  let liveBonus = 0;
+  let liveBonus = ``;
   let liveBonusCount = Answer.MAX_LIVES - wrongAnswersCount;
   let slowPenalty = ``;
   let slowPenaltyCount = 0;
@@ -72,11 +72,9 @@ const getStatsRow = (number, answers) => {
       <td class="result__points">×&nbsp;100</td>
       <td class="result__total">${totalScore}</td>
     </tr>
-    <tr>
     ${speedBonus}
     ${liveBonus}
-    ${slowPenalty}
-  </tr>`;
+    ${slowPenalty}`;
 };
 
 const template = new Template(() => {
@@ -116,7 +114,7 @@ const template = new Template(() => {
       <tr>
         <td colspan="5" class="result__total  result__total--final">${totalScore}</td>
       </tr>
-      ${previousGames}
+      ${previousGames.join(``)}
     </table>
   </div>
   ${Component.footer}`;
