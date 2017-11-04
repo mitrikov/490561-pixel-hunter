@@ -1,6 +1,6 @@
 import GameData from '../../data/game-data';
 import screens from '../../data/screens';
-import onBackButtonClick from './back-button';
+import confirmReturn from './confirm-return';
 
 const game1Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
@@ -20,6 +20,16 @@ const game1Controller = () => {
       screens.game.answer(isAnswerCorrect());
     }
   };
+
+  const onBackButtonClick = () => {
+    if (confirmReturn()) {
+      form.removeEventListener(`change`, onAnswer, false);
+      screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+      GameData.resetCurrentState();
+      screens.game.resetTimer();
+      screens.greeting.show();
+    }
+  }
 
   form.addEventListener(`change`, onAnswer, false);
   screens.game.element.querySelector(`.back`).addEventListener(`click`, onBackButtonClick, false);

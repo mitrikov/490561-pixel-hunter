@@ -5,7 +5,7 @@ const game3Template = () => {
     <div class="game__option">
       <img src="${GameData.currentQuestion.images[0].url}" alt="Option 1" width="304" height="455">
     </div>
-    <div class="game__option  game__option--selected">
+    <div class="game__option">
       <img src="${GameData.currentQuestion.images[1].url}" width="304" height="455">
     </div>
     <div class="game__option">

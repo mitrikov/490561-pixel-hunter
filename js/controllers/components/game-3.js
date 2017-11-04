@@ -1,14 +1,31 @@
 import GameData from '../../data/game-data';
 import screens from '../../data/screens';
-import onBackButtonClick from './back-button';
+import confirmReturn from './confirm-return';
 
 const game3Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
   const pictures = form.querySelectorAll(`.game__option`);
 
   const isAnswerCorrect = (e) => {
-    const picIndex = [...pictures].indexOf(e.target);
+    let picIndex = 0;
+    for (let key in pictures) {
+      if (pictures[key] !== e.target) {
+        picIndex++;
+      } else {
+        break;
+      }
+    }
     return GameData.currentQuestion.isLookingForPainting ? GameData.currentQuestion.images[picIndex].type === `paint` : GameData.currentQuestion.images[picIndex].type === `photo`;
+  };
+
+  const onBackButtonClick = () => {
+    if (confirmReturn()) {
+      form.removeEventListener(`click`, onAnswer, false);
+      screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+      GameData.resetCurrentState();
+      screens.game.resetTimer();
+      screens.greeting.show();
+    }
   };
 
   const onAnswer = (e) => {

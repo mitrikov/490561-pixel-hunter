@@ -5,6 +5,7 @@ const controller = () => {
   const onBackButtonClick = () => {
     screens.greeting.show();
     GameData.resetCurrentState();
+    GameData.previousStats = false;
     screens.stats.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
   };
   screens.stats.element.querySelector(`.back`).addEventListener(`click`, onBackButtonClick, false);

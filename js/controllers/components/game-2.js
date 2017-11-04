@@ -1,6 +1,6 @@
 import GameData from '../../data/game-data';
 import screens from '../../data/screens';
-import onBackButtonClick from './back-button';
+import confirmReturn from './confirm-return';
 
 const game2Controller = () => {
   const form = screens.game.element.querySelector(`.game__option`);
@@ -11,6 +11,16 @@ const game2Controller = () => {
     const isPhotoCorrectlyChecked = radioBoxes[0].checked && imgType === `photo`;
     const isPaintCorrectlyChecked = radioBoxes[1].checked && imgType === `paint`;
     return isPhotoCorrectlyChecked || isPaintCorrectlyChecked;
+  };
+
+  const onBackButtonClick = () => {
+    if (confirmReturn()) {
+      screens.game.element.querySelector(`.game__content`).removeEventListener(`change`, onAnswer, false);
+      screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+      GameData.resetCurrentState();
+      screens.game.resetTimer();
+      screens.greeting.show();
+    }
   };
 
   const onAnswer = () => {

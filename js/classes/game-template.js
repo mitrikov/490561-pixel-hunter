@@ -15,33 +15,6 @@ const Time = {
 * */
 
 export default class GameTemplate extends Template {
-  show() {
-    if (GameData.currentQuestionId < Answer.MAX_COUNT - 1 && !GameData.isGameFailed) {
-      GameData.currentQuestionId++;
-      this.resetTimer();
-      super.show();
-      this.setTimer();
-    } else {
-      screens.stats.show();
-      this.resetTimer();
-    }
-  }
-
-  answer(isAnswerCorrect) {
-    if (isAnswerCorrect) {
-      if (this._timer.value >= Time.FAST) {
-        GameData.answer = Answer.FAST;
-      } else if (this._timer.value >= Time.SLOW) {
-        GameData.answer = Answer.CORRECT;
-      } else {
-        GameData.answer = Answer.SLOW;
-      }
-    } else {
-      GameData.answer = Answer.WRONG;
-    }
-    this.show();
-  }
-
   setTimer() {
     this._timer = new Timer();
     this._timerElement = this.element.querySelector(`.game__timer`);
@@ -65,6 +38,32 @@ export default class GameTemplate extends Template {
       this._timer.reset();
       clearInterval(this._timingFunction);
       this._timerElement.classList.remove(`game__timer--blink`);
+    }
+  }
+
+  answer(isAnswerCorrect) {
+    if (isAnswerCorrect) {
+      if (this._timer.value >= Time.FAST) {
+        GameData.answer = Answer.FAST;
+      } else if (this._timer.value >= Time.SLOW) {
+        GameData.answer = Answer.CORRECT;
+      } else {
+        GameData.answer = Answer.SLOW;
+      }
+    } else {
+      GameData.answer = Answer.WRONG;
+    }
+    this.show();
+  }
+
+  show() {
+    this.resetTimer();
+    if (GameData.currentQuestionId < Answer.MAX_COUNT - 1 && !GameData.isGameFailed) {
+      GameData.currentQuestionId++;
+      super.show();
+      this.setTimer();
+    } else {
+      screens.stats.show();
     }
   }
 }

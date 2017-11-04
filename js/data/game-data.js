@@ -45,16 +45,18 @@ const GameData = {
   },
 
   downloadStats() {
-    fetch(`https://es.dump.academy/pixel-hunter/stats/${this.userName}`)
-        .then((result) => {
-          if (result.headers.get(`Content-Type`) && result.headers.get(`Content-Type`).indexOf(`application/json`) >= 0) {
-            return result.json();
-          } else {
-            return Promise.resolve(false);
-          }
-        }).then((res) => {
-          this.previousStats = res ? res : false;
-        });
+    if (!this.previousStats) {
+      fetch(`https://es.dump.academy/pixel-hunter/stats/${this.userName}`)
+          .then((result) => {
+            if (result.headers.get(`Content-Type`) && result.headers.get(`Content-Type`).indexOf(`application/json`) >= 0) {
+              return result.json();
+            } else {
+              return Promise.resolve(false);
+            }
+          }).then((res) => {
+            this.previousStats = res ? res : false;
+          });
+    }
   },
 
   uploadStats() {

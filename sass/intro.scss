@@ -10,6 +10,32 @@
   }
 }
 
+@keyframes asterisk-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: scale(1.25);
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: scale(1.00);
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: scale(1.25);
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: scale(1.00);
+    transform: rotate(360deg);
+  }
+}
+
 .fade-in {
   animation: fade 0.5s ease-in 0s 1;
 }
@@ -27,21 +53,20 @@
   position: relative;
 }
 
-.rotating-color {
-  animation: asterisk-loading 1.5s ease-in infinite;
-}
-
 .intro__asterisk {
+  animation: asterisk-loading 1.5s ease-in infinite;
+  font-family: Arial;
+  font-weight: bold;
   text-align: center;
 
-  font-size: 172px;
+  font-size: 220px;
   color: $main-red-color;
   // cursor: pointer;
 
   position: relative;
-  top: 170px;
+  top: 110px;
   left: 30px;
-  padding-top: 45px;
+  padding-top: 95px;
 
   &:active {
     color: $link-active-color;
