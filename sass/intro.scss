@@ -1,31 +1,5 @@
 @import "colors";
 
-@keyframes asterisk-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: scale(1.25);
-    transform: rotate(90deg);
-  }
-
-  50% {
-    transform: scale(1.00);
-    transform: rotate(180deg);
-  }
-
-  75% {
-    transform: scale(1.25);
-    transform: rotate(270deg);
-  }
-
-  100% {
-    transform: scale(1.00);
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes fade {
   from {
     opacity: 0;
@@ -53,7 +27,7 @@
   position: relative;
 }
 
-.rotating {
+.rotating-color {
   animation: asterisk-loading 1.5s ease-in infinite;
 }
 
@@ -68,10 +42,6 @@
   top: 170px;
   left: 30px;
   padding-top: 45px;
-
-  &:hover {
-    color: $link-hover-color;
-  }
 
   &:active {
     color: $link-active-color;

@@ -1,7 +1,8 @@
 import Template from '../classes/template';
 import components from '../data/components';
-import controller from '../controllers/rules';
 import GameData from '../data/game-data';
+import controller from '../controllers/rules';
+
 
 const template = new Template(() => {
   const userName = GameData.userName;
@@ -29,7 +30,6 @@ const template = new Template(() => {
   ${components.footer}`;
 });
 
-template.id = `rules`;
 template.controllers = controller;
 
 export default template;

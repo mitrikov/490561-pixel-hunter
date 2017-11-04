@@ -17,7 +17,6 @@ const template = new Template(`<div class="greeting central--blur">
   </div>
 ${components.footer}`);
 
-template.id = `greeting`;
 template.controllers = controller;
 
 export default template;

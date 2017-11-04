@@ -1,5 +1,3 @@
-import screens from '../data/screens';
-
 /*
 *  Template - класс, описывающий шаблон
 *  - element - используется как ссылка на DOM-элемент шаблона
@@ -13,10 +11,7 @@ export default class Template {
     this.element = document.createElement(`div`);
     this._content = content;
   }
-  // Записывает экземпляры класса в объект screens
-  set id(id) {
-    screens[id] = this;
-  }
+
   // Присваивает шаблону функцию-callback контроллеров
   set controllers(callback) {
     this._controllers = callback;
@@ -26,6 +21,8 @@ export default class Template {
     activeScreen.innerHTML = ``;
     this.element.innerHTML = typeof this._content === `function` ? this._content.call() : this._content;
     activeScreen.appendChild(this.element);
-    this._controllers(this);
+    if (this._controllers) {
+      this._controllers(this);
+    }
   }
 }

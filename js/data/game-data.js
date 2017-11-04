@@ -12,11 +12,6 @@ const GameData = {
   answers: [],
   previousStats: false,
 
-  countTotalScore(answers = this.answers) {
-    const lives = Answer.MAX_LIVES - answers.filter((element) => element === Answer.WRONG).length;
-    return answers.reduce((sum, current) => sum + current) + lives * 50;
-  },
-
   set answer(value) {
     if (value === Answer.WRONG) {
       this.lives--;
@@ -30,6 +25,11 @@ const GameData = {
 
   get isGameFailed() {
     return this.lives < 0;
+  },
+
+  countTotalScore(answers = this.answers) {
+    const lives = Answer.MAX_LIVES - answers.filter((element) => element === Answer.WRONG).length;
+    return answers.reduce((sum, current) => sum + current) + lives * 50;
   },
 
   initQuestions() {
@@ -54,7 +54,6 @@ const GameData = {
           }
         }).then((res) => {
           this.previousStats = res ? res : false;
-          console.log(this.previousStats);
         });
   },
 

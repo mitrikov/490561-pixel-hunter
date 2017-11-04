@@ -1,6 +1,6 @@
 import Template from '../classes/template';
-import Component from '../data/components';
 import controller from '../controllers/stats';
+import components from '../data/components';
 import GameData from '../data/game-data';
 import Answer from '../data/answer';
 
@@ -67,7 +67,7 @@ const getStatsRow = (number, answers) => {
   return `<tr>
     <td class="result__number">${number}.</td>
       <td colspan="2">
-        ${Component.gameStats(answers)}
+        ${components.gameStats(answers)}
       </td>
       <td class="result__points">×&nbsp;100</td>
       <td class="result__total">${totalScore}</td>
@@ -105,7 +105,7 @@ const template = new Template(() => {
   }
 
   return `<header class="header">
-    ${Component.backButton}
+    ${components.backButton}
   </header>
   <div class="result">
     <h1>${result}</h1>
@@ -117,10 +117,9 @@ const template = new Template(() => {
       ${previousGames.join(``)}
     </table>
   </div>
-  ${Component.footer}`;
+  ${components.footer}`;
 });
 
-template.id = `stats`;
 template.controllers = controller;
 
 export default template;

@@ -72,18 +72,28 @@ export default {
     return paintingOrPhoto ? this.randomPainting : this.randomPhoto;
   },
 
-  load() {
-    return new Promise((onLoad) => {
-      let image;
-      for (let url of this.used) {
-        image = new Image();
-        image.src = url;
-        image.onerror = () => {
-          this.photos.splice(this.photos.find(image.src), 1);
-          this.paintings.splice(this.paintings.find(image.src), 1)
-        };
-      }
-      image.onload = () => onLoad();
+  load(resolve) {
+    let loadingImages = [];
+
+    for (let url of this.used) {
+      const image = new Image();
+      image.src = url;
+      const promise = new Promise((promiseResolve) => {
+        image.onload = () => promiseResolve();
+      });
+      loadingImages.push(promise);
+    }
+    Promise.all(loadingImages).then(() => resolve());
+  },
+
+  loadLogo() {
+    return new Promise((resolve) => {
+      const introLogo = new Image();
+      introLogo.src = `img/egg_big.png`;
+      introLogo.onload = () => resolve();
+      introLogo.onerror = () => {
+        throw new Error(`${introLogo.src} не найдено!`);
+      };
     });
   }
 };

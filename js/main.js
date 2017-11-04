@@ -1,20 +1,16 @@
-import modules from './load-modules';
-import gameData from './data/game-data';
+import GameData from './data/game-data';
+import screens from './data/screens';
 import images from './data/images';
 
-gameData.initQuestions();
-modules.intro.show();
+GameData.initQuestions();
+screens.intro.show();
 
-
-window.onload = () => {
-  const loading = images.load();
-  modules.intro.element.querySelector(`.intro__asterisk`).classList.add(`rotating`);
-  loading.then(() => {
-    modules.intro.element.classList.add(`fade-out`);
-    setTimeout(() => {
-      modules.greeting.element.classList.add(`fade-in`);
-      modules.greeting.show();
-      modules.intro.element.classList.remove(`fade-out`);
-    }, 500);
-  });
-};
+images.loadLogo()
+    .then(() => images.load(() => {
+      screens.intro.element.classList.add(`fade-out`);
+      setTimeout(() => {
+        screens.greeting.element.classList.add(`fade-in`);
+        screens.greeting.show();
+        screens.intro.element.classList.remove(`fade-out`);
+      }, 300);
+    }));

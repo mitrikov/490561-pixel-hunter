@@ -1,6 +1,6 @@
-import GameData from '../data/game-data';
+import GameData from '../../data/game-data';
 
-const game1 = () => {
+const game1Template = () => {
   return `<form class="game__content">
     <div class="game__option">
       <img src="${GameData.currentQuestion.images[0].url}" alt="Option 1" width="468" height="458">
@@ -27,4 +27,4 @@ const game1 = () => {
   </form>`;
 };
 
-export default game1;
+export default game1Template;

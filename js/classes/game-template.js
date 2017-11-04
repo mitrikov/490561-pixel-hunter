@@ -1,8 +1,8 @@
 import Template from './template';
-import screens from '../data/screens';
+import Timer from './timer';
 import GameData from '../data/game-data';
 import Answer from '../data/answer';
-import Timer from '../classes/timer';
+import screens from '../data/screens';
 
 const Time = {
   FAST: 20,

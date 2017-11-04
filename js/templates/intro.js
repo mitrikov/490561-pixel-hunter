@@ -1,6 +1,5 @@
 import Template from '../classes/template';
 import components from '../data/components';
-import controller from '../controllers/intro';
 
 const template = new Template(`<div id="main" class="central__content">
     <div id="intro" class="intro">
@@ -9,8 +8,5 @@ const template = new Template(`<div id="main" class="central__content">
     </div>
   </div>
   ${components.footer}`);
-
-template.id = `intro`;
-template.controllers = controller;
 
 export default template;

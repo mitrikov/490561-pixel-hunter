@@ -1,14 +1,14 @@
-import components from '../data/components';
 import GameData from '../data/game-data';
 import GameTemplate from '../classes/game-template';
 import GameType from '../data/game-type';
+import components from '../data/components';
 
-import game1Template from '../templates/game-1';
-import game2Template from '../templates/game-2';
-import game3Template from '../templates/game-3';
-import game1Controller from '../controllers/game-1';
-import game2Controller from '../controllers/game-2';
-import game3Controller from '../controllers/game-3';
+import game1Template from './components/game-1';
+import game2Template from './components/game-2';
+import game3Template from './components/game-3';
+import game1Controller from '../controllers/components/game-1';
+import game2Controller from '../controllers/components/game-2';
+import game3Controller from '../controllers/components/game-3';
 
 const Game = {
   templates: [game1Template, game2Template, game3Template],
@@ -35,8 +35,6 @@ const template = new GameTemplate(() => {
       </div>
     ${components.footer}`;
 });
-
-template.id = `game`;
 template.controllers = () => {
   return Game.controllers[GameData.currentQuestion.type].call();
 };
