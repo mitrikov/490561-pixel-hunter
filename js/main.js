@@ -9,8 +9,8 @@ images.loadLogo()
     .then(() => images.load(() => {
       screens.intro.element.classList.add(`fade-out`);
       setTimeout(() => {
-        screens.greeting.element.classList.add(`fade-in`);
         screens.greeting.show();
+        screens.greeting.element.classList.add(`fade-in`);
         screens.intro.element.classList.remove(`fade-out`);
       }, 300);
     }));

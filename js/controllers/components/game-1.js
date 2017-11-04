@@ -29,7 +29,7 @@ const game1Controller = () => {
       screens.game.resetTimer();
       screens.greeting.show();
     }
-  }
+  };
 
   form.addEventListener(`change`, onAnswer, false);
   screens.game.element.querySelector(`.back`).addEventListener(`click`, onBackButtonClick, false);
