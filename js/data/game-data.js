@@ -33,9 +33,7 @@ const GameData = {
   },
 
   initQuestions() {
-    for (let i = 0; i < Answer.MAX_COUNT; i++) {
-      this.questions[i] = new Question(i);
-    }
+    this.questions = this.questions.fill(null).map(() => new Question());
   },
 
   resetCurrentState() {

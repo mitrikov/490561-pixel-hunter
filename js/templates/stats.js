@@ -87,14 +87,8 @@ const template = new Template(() => {
   GameData.uploadStats();
 
   if (GameData.previousStats) {
-    for (let i = 0; i < PREVIOUS_GAMES_COUNT; i++) {
-      const stats = GameData.previousStats.pop();
-      if (stats) {
-        previousGames.push(getStatsRow(i + 2, stats.answers));
-      } else {
-        break;
-      }
-    }
+    const previousStats = GameData.previousStats.reverse().slice(0, PREVIOUS_GAMES_COUNT);
+    previousGames = previousStats.map((stats, index) => getStatsRow(index + 2, stats.answers));
   }
 
   if (GameData.isGameFailed) {

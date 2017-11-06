@@ -5,6 +5,7 @@ import confirmReturn from './confirm-return';
 const game1Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
   const radioBoxes = form.querySelectorAll(`input[type=radio]`);
+  const backButton = screens.game.element.querySelector(`.back`);
 
   const isAnswerCorrect = () => {
     const imgTypes = [GameData.currentQuestion.images[0].type, GameData.currentQuestion.images[1].type];
@@ -16,7 +17,7 @@ const game1Controller = () => {
   const onAnswer = () => {
     if ((radioBoxes[0].checked || radioBoxes[1].checked) && (radioBoxes[2].checked || radioBoxes[3].checked)) {
       form.removeEventListener(`change`, onAnswer, false);
-      screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+      backButton.removeEventListener(`click`, onBackButtonClick, false);
       screens.game.answer(isAnswerCorrect());
     }
   };
@@ -24,7 +25,7 @@ const game1Controller = () => {
   const onBackButtonClick = () => {
     if (confirmReturn()) {
       form.removeEventListener(`change`, onAnswer, false);
-      screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+      backButton.removeEventListener(`click`, onBackButtonClick, false);
       GameData.resetCurrentState();
       screens.game.resetTimer();
       screens.greeting.show();
@@ -32,7 +33,7 @@ const game1Controller = () => {
   };
 
   form.addEventListener(`change`, onAnswer, false);
-  screens.game.element.querySelector(`.back`).addEventListener(`click`, onBackButtonClick, false);
+  backButton.addEventListener(`click`, onBackButtonClick, false);
 };
 
 export default game1Controller;

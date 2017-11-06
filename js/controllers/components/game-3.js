@@ -5,6 +5,7 @@ import confirmReturn from './confirm-return';
 const game3Controller = () => {
   const form = screens.game.element.querySelector(`.game__content`);
   const pictures = form.querySelectorAll(`.game__option`);
+  const backButton = screens.game.element.querySelector(`.back`);
 
   const isAnswerCorrect = (e) => {
     let picIndex = 0;
@@ -21,7 +22,7 @@ const game3Controller = () => {
   const onBackButtonClick = () => {
     if (confirmReturn()) {
       form.removeEventListener(`click`, onAnswer, false);
-      screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+      backButton.removeEventListener(`click`, onBackButtonClick, false);
       GameData.resetCurrentState();
       screens.game.resetTimer();
       screens.greeting.show();
@@ -30,12 +31,12 @@ const game3Controller = () => {
 
   const onAnswer = (e) => {
     form.removeEventListener(`click`, onAnswer, false);
-    screens.game.element.querySelector(`.back`).removeEventListener(`click`, onBackButtonClick, false);
+    backButton.removeEventListener(`click`, onBackButtonClick, false);
     screens.game.answer(isAnswerCorrect(e));
   };
 
   form.addEventListener(`click`, onAnswer, false);
-  screens.game.element.querySelector(`.back`).addEventListener(`click`, onBackButtonClick, false);
+  backButton.addEventListener(`click`, onBackButtonClick, false);
 };
 
 export default game3Controller;

@@ -8,8 +8,7 @@ import GameType from '../data/game-type';
 * */
 
 export default class Question {
-  constructor(questionId, questionType) {
-    this.id = questionId;
+  constructor(questionType) {
     this.type = questionType ? questionType : Math.round(Math.random() * (GameType.MAX_COUNT - 1));
     switch (this.type) {
       case GameType.TWO_IMAGES :

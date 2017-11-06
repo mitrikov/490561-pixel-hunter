@@ -1,12 +1,14 @@
 import screens from '../data/screens';
 
 const controller = () => {
+  const greetingContinue = screens.greeting.element.querySelector(`.greeting__continue`);
+
   const onContinue = () => {
-    screens.greeting.element.querySelector(`.greeting__continue`).removeEventListener(`click`, onContinue, false);
+    greetingContinue.removeEventListener(`click`, onContinue, false);
     screens.rules.show();
   };
 
-  screens.greeting.element.querySelector(`.greeting__continue`).addEventListener(`click`, onContinue, false);
+  greetingContinue.addEventListener(`click`, onContinue, false);
 };
 
 export default controller;

@@ -73,16 +73,15 @@ export default {
   },
 
   load(resolve) {
-    let loadingImages = [];
-
-    for (let url of this.used) {
-      const image = new Image();
-      image.src = url;
+    const loadingImages = this.used.map((url) => {
       const promise = new Promise((promiseResolve) => {
+        const image = new Image();
+        image.src = url;
         image.onload = () => promiseResolve();
       });
-      loadingImages.push(promise);
-    }
+      return promise;
+    });
+
     Promise.all(loadingImages).then(() => resolve());
   },
 
